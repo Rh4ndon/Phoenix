@@ -136,7 +136,7 @@
                                                 placeholder="Birthday" >
                                         </div>
 
-                                        <button type="submit" name="update" class="btn btn-primary btn-user btn-block">
+                                        <button type="submit" name="update" class="btn btn-primary btn-user btn-block" disabled>
                                             Update
                                         </button>
                                     </form>
