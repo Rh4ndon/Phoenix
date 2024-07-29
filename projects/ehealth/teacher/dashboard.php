@@ -120,7 +120,7 @@
                   <div id="editor" style="height: 300px"></div>
                   
                   <br>
-                  <button type="submit" name="add_announcement" class="btn btn-primary col-lg-2">Add</button>
+                  <button type="submit" name="add_announcement" class="btn btn-primary col-lg-2" disabled>Add</button>
                   </form>
 
 
