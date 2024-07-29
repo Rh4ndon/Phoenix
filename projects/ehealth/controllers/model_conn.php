@@ -1,0 +1,1 @@
+<?php include('../models/database_handler.php')?>
