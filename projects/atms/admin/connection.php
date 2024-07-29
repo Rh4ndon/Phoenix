@@ -3,7 +3,7 @@
 $conn = "";
   
 try {
-    $servername = "localhost:3306";
+    $servername = "localhost";
     $dbname = "u187430566_atms";
     $username = "u187430566_rhand0n";
     $password = "Rhandon_0312";
