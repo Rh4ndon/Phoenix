@@ -6,7 +6,7 @@
 
    */
 
-   $db_name = 'mysql:host=rhandon.tech;dbname=u187430566_digiread';
+   $db_name = 'mysql:host=localhost;dbname=u187430566_digiread';
    $db_user_name = 'u187430566_rh4ndon';
    $db_user_pass = 'Rhandon_0312';
 
