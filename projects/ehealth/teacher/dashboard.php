@@ -87,7 +87,7 @@
                        <div class="row mb-3">  
                        <div class="col-md-10"><?php echo $row['announce']; ?></div>
                        
-                       <div class="col-md-2"><button name="delete_announce" type="submit" class="btn btn-danger">Delete</button></div>
+                       <div class="col-md-2"><button name="delete_announce" type="submit" class="btn btn-danger" disabled >Delete</button></div>
                        </form>
 
                       </div>
