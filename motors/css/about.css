@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+.container {
+    margin: 0;
+    padding: 0;
+}
+
+.vh {
+    min-height: 95vh;
+}
+
+.box {
+    background-color: white;
+    padding: 0;
+}
+
+.right {
+    background-color: #42e084;
+    padding: 20px;
+}
+
+.img-fluid {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.text-justify {
+    font-family: 'Lato', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    padding: 20px;
+}
+
+@media (max-width: 767px) {
+    .container {
+        flex-direction: column;
+    }
+    
+    .right {
+        margin-top: 20px;
+        margin: 0;
+    }
+    .br-right-20 {
+        border-radius: 20px;
+    }
+    .br-left-20 {
+        border-radius: 20px;
+    }
+}
