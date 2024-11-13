@@ -1,0 +1,144 @@
+body {
+    background-color: #FFFBFA;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    overflow-x: hidden;
+    padding: 0;
+  }
+
+  
+.br-20 {
+  border-radius: 20px;
+}
+.br-right-20{
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+.br-left-20{
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+.navbar {
+  background-color: #333;
+  padding-right: 75px;
+
+}
+
+
+
+
+.carousel {
+  margin-bottom: 20px;
+}
+
+.white {
+  background-color: #f6f8f8"
+}
+
+.carousel img {
+  width: 90%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.sticky-footer {
+  width: 100%;
+  background-color: #EBEBED;
+  color: #000;
+  padding-top: 18px;
+  padding-left: 15px;
+  padding-bottom: 3px;
+
+}
+.sticky-footer .container {
+  padding-left: 20px;
+  padding-right: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.products .card{
+  border-radius: 20px;
+}
+ 
+/* Hide all by default */
+.motorcycle {
+  display: none;
+}
+/* Honda is visible by default */
+#honda {
+  display: block;
+}
+
+/* For No Data Found */
+#nothing {
+  display: block;
+}
+.no-data {
+  padding: 2rem;
+  background-color: #f8f9fa;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  margin-top: 2rem;
+}
+
+.no-data h1 {
+  font-size: 2.5rem;
+  color: #dc3545; 
+  margin-bottom: 1rem;
+}
+
+.no-data p.lead {
+  font-size: 1.5rem;
+  color: #6c757d;
+}
+
+.no-data a.btn {
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+
+ 
+
+
+/* Carousel Arrow */
+.carousel-control-next,
+.carousel-control-prev{
+    filter: invert(100%);
+}
+
+/* Motorcycles */
+.motor-box {
+  border-radius: 10px; outline: 2px solid #ccc;
+}
+
+/* Secret Box */
+.secret-box {
+  display: none;
+  position: relative;
+  width: 1500px; 
+  height: 1000px; 
+}
+
+.my-iframe {
+  width: 100%;
+  height: 100%;
+}
+
+/* Table */
+.table {
+  background-color: #d1e7dd;
+}
+
+@media (max-width: 767px) {
+  .icon360{
+    display: none;
+  }
+}
