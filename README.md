@@ -12,12 +12,20 @@ I am a passionate Software Developer with a strong background in LAMP Stack Deve
 
 ## Projects
 
-Here are some of the projects I've worked on:
+Out of 29 successfully completed projects, including this Portfolio, I've handpicked the ones that most effectively demonstrate my technical proficiency and creativity. To ensure data security and prevent unintended changes, specific functionalities have been limited in these demo showcases.
 
-- **Learning Hub**: An online platform for educational resources.
-- **Attendance System**: A web application to manage and track attendance.
-- **Dental Clinic Management System**: A comprehensive web and mobile app for managing dental clinic operations.
-- **Inventory System**: A robust system for managing inventory and stock levels.
+- **Gate Attendance System (SMS)**
+- **Dental Clinic Management System**
+- **Digital Portfolio**
+- **Digital Reading Comprehension**
+- **Barcode Based Attendance System**
+- **Shop Inventory System**
+- **QR Based Attendance System**
+- **School E-Health Monitoring System**
+
+<div id="header" align="center">
+  <img src="assets/images/site-logo/27projects.png" alt="Screenshot of Projects List" width="600"/>
+</div>
 
 You can explore these projects and more on my [GitHub](https://github.com/Rh4ndon) and my [website](https://rhandon.tech).
 
