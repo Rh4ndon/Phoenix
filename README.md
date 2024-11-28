@@ -12,7 +12,7 @@ I am a passionate Software Developer with a strong background in LAMP Stack Deve
 
 ## Projects
 
-Out of 29 successfully completed projects, including this Portfolio, I've handpicked the ones that most effectively demonstrate my technical proficiency and creativity. To ensure data security and prevent unintended changes, specific functionalities have been limited in these demo showcases.
+Out of 29 successfully completed projects, including this Portfolio, I've handpicked the ones that most effectively demonstrate my technical proficiency and creativity.
 
 - **Gate Attendance System (SMS)**
 - **Dental Clinic Management System**
