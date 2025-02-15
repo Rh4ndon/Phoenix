@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<title>Auto Scheduler</title>
+	<!-- HTML5 Shim and Respond.js IE11 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 11]>
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	<!-- Meta -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="">
+	<meta name="author" content="Phoenixcoded" />
+	<!-- Favicon icon -->
+	<link rel="icon" href="assets/images/school-logo.png" type="image/x-icon">
+
+	<!-- vendor css -->
+	<link rel="stylesheet" href="assets/css/style.css">
+	
+	
+
+
+</head>
+
+<!-- [ auth-signin ] start -->
+<div class="auth-wrapper">
+	<div class="auth-content text-center">
+		
+		<div class="card borderless">
+			<div class="row align-items-center ">
+				<div class="col-md-12">
+					<div class="card-body">
+						<h4 class="mb-3 f-w-400"><img src="assets/images/small-school-logo.png" alt="" class="img-fluid"> &nbsp;Signin </h4>
+						<hr>
+						<div class="form-group mb-3">
+							<input type="text" class="form-control" id="Email" placeholder="Email address">
+						</div>
+						<div class="form-group mb-4">
+							<input type="password" class="form-control" id="Password" placeholder="Password">
+						</div>
+						<button class="btn btn-block btn-primary mb-4" id="loginBtn">Signin</button>
+
+		
+						<hr>
+						<!--p class="mb-2 text-muted">Forgot password? <a href="auth-reset-password.html" class="f-w-400">Reset</a></!--p-->
+						<p class="mb-0 text-muted">Don’t have an account? <a href="auth-signup.html" class="f-w-400">Signup</a></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- [ auth-signin ] end -->
+
+<script>
+	document.getElementById('loginBtn').addEventListener('click', function(event) {
+		event.preventDefault(); // Prevent default form submission
+		const email = document.getElementById('Email').value;
+		const password = document.getElementById('Password').value;
+
+		const xhr = new XMLHttpRequest();
+		xhr.open('POST', 'controllers/login.php', true);
+		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState === XMLHttpRequest.DONE) {
+				if (xhr.status === 200) {
+					// Handle success response
+					data = JSON.parse(xhr.responseText);
+					//console.log('Login successful:', data);
+					//console.log('User type:', data.user_type);
+					
+					if (data.user_type === 'admin') {
+						window.location.href = 'views/admin/admin-home.php';
+					} else if (data.user_type === 'student') {
+						window.location.href = 'views/student/student-home.php';
+					} else if (data.user_type === 'teacher') {
+						window.location.href = 'views/teacher/teacher-home.php';
+					}
+				
+					
+				} else {
+					// Handle error response
+					console.error('Login failed:', xhr.responseText);
+				}
+			}
+		};
+		xhr.send('email=' + encodeURIComponent(email) + '&password=' + encodeURIComponent(password));
+	});
+</script>
+
+<!-- Required Js -->
+<script src="assets/js/vendor-all.min.js"></script>
+<script src="assets/js/plugins/bootstrap.min.js"></script>
+
+<script src="assets/js/pcoded.min.js"></script>
+
+
+
+</body>
+
+</html>
