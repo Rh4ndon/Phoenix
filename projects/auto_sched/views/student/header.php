@@ -27,6 +27,7 @@
 
 
 </head>
+<?php @include '../../controllers/session.php'; ?>
 
 <body>
     <!-- [ Pre-loader ] start -->
@@ -304,3 +305,5 @@
         </div>
     </header>
     <!-- [ Header ] end -->
+
+    <?php @include '../../controllers/session.php'; ?>

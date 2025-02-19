@@ -27,6 +27,7 @@
 
 
 </head>
+<?php @include '../../controllers/session.php'; ?>
 
 <body>
     <!-- [ Pre-loader ] start -->

@@ -22,7 +22,10 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     header('Content-Type: application/json');
     if ($record) {
         session_start(); // Make sure to start the session
+        $_SESSION['id'] = $record['id'];
         $_SESSION['email'] = $email;
+        $_SESSION['name'] = $record['name'];
+        $_SESSION['user_type'] = $record['user_type'];
         echo json_encode([
             'status' => 'success',
             'user_id' => $record['id'],
