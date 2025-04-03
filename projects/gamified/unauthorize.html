@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unauthorized Access</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #0d6efd;
+            --danger-color: #dc3545;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .unauthorized-container {
+            max-width: 500px;
+            width: 100%;
+            padding: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .unauthorized-icon {
+            font-size: 80px;
+            color: var(--danger-color);
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: var(--danger-color);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        p {
+            color: #6c757d;
+            margin-bottom: 25px;
+            font-size: 18px;
+        }
+
+        .btn-return {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-block;
+            transition: all 0.3s;
+            border: none;
+        }
+
+        .btn-return:hover {
+            background-color: #0b5ed7;
+            transform: translateY(-2px);
+            color: white;
+        }
+
+        .additional-options {
+            margin-top: 30px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+
+        .additional-options a {
+            color: #6c757d;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        .additional-options a:hover {
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <div class="container">
+            <div class="unauthorized-container">
+                <div class="unauthorized-icon">
+                    <i class="fas fa-ban"></i>
+                </div>
+                <h1>Unauthorized Access</h1>
+                <p>You don't have permission to access this page. Please contact your administrator if you believe this is an error.</p>
+
+                <a href="javascript:history.back()" class="btn btn-primary btn-return">
+                    <i class="fas fa-arrow-left me-2"></i>Return to Previous Page
+                </a>
+
+                <div class="additional-options mt-4">
+                    <a href="index.php"><i class="fas fa-home me-1"></i> Go to Homepage</a>
+                    <a href="index.php"><i class="fas fa-sign-in-alt me-1"></i> Login with Different Account</a>
+                </div>
+            </div>
+        </div>
+    </center>
+
+    <!-- Bootstrap 5 JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
