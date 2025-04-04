@@ -41,7 +41,7 @@ $exam = getRecord('quizzes', 'quiz_id = ' . $quiz_id);
                             $options = getAllRecords('question_options', 'WHERE question_id = ' . $questions['question_id']);
 
                 ?>
-                            <tr>
+                            <tr class="exam-card">
                                 <td><?php echo $questions['question_text']; ?></td>
                                 <td><?php echo $questions['question_type'] == 'multiple_choice' ? 'Multiple Choice' : ($questions['question_type'] == 'true_false' ? 'True/False' : 'Short Answer'); ?></td>
                                 <td><?php echo $questions['points']; ?></td>

@@ -13,3 +13,5 @@
 </head>
 
 <body>
+
+    <?php include('../../view/assets/bg.html'); ?>

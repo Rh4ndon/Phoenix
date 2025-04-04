@@ -9,7 +9,7 @@ try {
         foreach ($records as $exams) {
             $exams['created_at'] = date('F j, Y', strtotime($exams['created_at']));
 ?>
-            <tr>
+            <tr class="exam-card">
                 <td><?php echo $exams['title']; ?></td>
                 <td><?php echo $exams['subject']; ?></td>
                 <td><?php echo $exams['description']; ?></td>
