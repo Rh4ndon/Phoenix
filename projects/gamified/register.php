@@ -222,7 +222,7 @@ if (isset($_SESSION['is_logged_in'])) {
                 <button type="submit" name="register" class="btn btn-primary btn-login mb-3">Submit</button>
             </form>
             <div class="additional-links">
-                <p>Old Explorer?</p>
+                <p>Old explorer?</p>
             </div>
             <a href="index.php"><button type="button" class="btn btn-outline-primary btn-login mb-3">Login</button></a>
 
