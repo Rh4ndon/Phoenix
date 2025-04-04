@@ -13,6 +13,7 @@ try {
                 <td><?php echo $exams['title']; ?></td>
                 <td><?php echo $exams['subject']; ?></td>
                 <td><?php echo $exams['description']; ?></td>
+                <td><?php echo $exams['time_limit']; ?></td>
                 <td><?php echo $exams['created_at']; ?></td>
                 <td>
                     <a href="teacher-view-exam.php?id=<?php echo $exams['quiz_id']; ?>" class="btn btn-sm btn-outline-info">View</a>

@@ -8,8 +8,9 @@ if (isset($_POST['update-exam'])) {
     $id = $_GET['id'];
     $title = $_POST['title'];
     $subject = $_POST['subject'];
+    $time = $_POST['time'];
     $description = $_POST['description'];
-    $record = editRecord('quizzes', ['title' => $title, 'subject' => $subject, 'description' => $description], 'quiz_id = ' . $id);
+    $record = editRecord('quizzes', ['title' => $title, 'subject' => $subject, 'description' => $description, 'time_limit' => $time], 'quiz_id = ' . $id);
 
     if ($record) {
         header("Location: ../view/teacher/teacher-exams.php?msg=Exam Updated Successfully");
