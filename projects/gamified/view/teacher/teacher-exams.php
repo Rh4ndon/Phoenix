@@ -37,6 +37,12 @@
                                 <input type="text" name="subject" class="form-control" placeholder="Enter Subject" required>
                             </div>
                             <div class="form-group mb-3">
+                                <label for="time">Time</label>
+                                <input type="number" name="time" class="form-control" placeholder="Enter time in minutes" min="1" max="120" required>
+                            </div>
+
+
+                            <div class="form-group mb-3">
                                 <label for="description">Description</label>
                                 <textarea name="description" class="form-control" placeholder="Enter Description" required></textarea>
                             </div>
@@ -63,6 +69,7 @@
                                         <th>Title</th>
                                         <th>Subject</th>
                                         <th>Description</th>
+                                        <th>Time</th>
                                         <th>Created At</th>
                                         <th>Action</th>
                                     </tr>

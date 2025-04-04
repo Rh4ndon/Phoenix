@@ -18,6 +18,10 @@ if (isset($_GET['id'])) {
                 <input type="text" name="subject" class="form-control" placeholder="Enter Subject" value="<?php echo $record['subject']; ?>" required>
             </div>
             <div class="form-group mb-3">
+                <label for="time">Time</label>
+                <input type="number" name="time" class="form-control" placeholder="Enter time in minutes" value="<?php echo $record['time_limit']; ?>" min="1" max="120" required>
+            </div>
+            <div class="form-group mb-3">
                 <label for="description">Description</label>
                 <textarea name="description" class="form-control" placeholder="Enter Description" required><?php echo $record['description']; ?></textarea>
             </div>

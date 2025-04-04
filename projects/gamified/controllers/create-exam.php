@@ -10,10 +10,11 @@ require_once '../models/functions.php';
 if (isset($_POST['create-exam'])) {
     $title = $_POST['title'];
     $subject = $_POST['subject'];
+    $time = $_POST['time'];
     $description = $_POST['description'];
     $is_published = 1;
 
-    $record = insertRecord('quizzes', ['title' => $title, 'subject' => $subject, 'description' => $description, 'is_published' => $is_published, 'created_by' => $_SESSION['user_id']]);
+    $record = insertRecord('quizzes', ['title' => $title, 'subject' => $subject, 'description' => $description, 'time_limit' => $time, 'is_published' => $is_published, 'created_by' => $_SESSION['user_id']]);
 
     if ($record) {
         header("Location: ../view/teacher/teacher-exams.php?msg=Exam Created Successfully");
