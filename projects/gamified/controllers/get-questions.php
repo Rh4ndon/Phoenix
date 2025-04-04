@@ -83,27 +83,29 @@ $exam = getRecord('quizzes', 'quiz_id = ' . $quiz_id);
                                         Delete
                                     </button>
 
-                                    <div class="modal fade" id="deleteModal<?php echo $questions['question_id']; ?>" tabindex="-1" aria-labelledby="deleteModalLabel<?php echo $questions['question_id']; ?>" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="deleteModalLabel<?php echo $questions['question_id']; ?>">Confirm Delete</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    Are you sure you want to delete this exam?
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                                    <a href="../../controllers/delete-question.php?id=<?php echo $questions['question_id']; ?>&quiz_id=<?php echo $quiz_id; ?>" class="btn btn-danger">Delete</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+
 
 
                                 </td>
                             </tr>
+
+                            <div class="modal fade" id="deleteModal<?php echo $questions['question_id']; ?>" tabindex="-1" aria-labelledby="deleteModalLabel<?php echo $questions['question_id']; ?>" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="deleteModalLabel<?php echo $questions['question_id']; ?>">Confirm Delete</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Are you sure you want to delete this exam?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                            <a href="../../controllers/delete-question.php?id=<?php echo $questions['question_id']; ?>&quiz_id=<?php echo $quiz_id; ?>" class="btn btn-danger">Delete</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                 <?php
                         }
                     } else {
