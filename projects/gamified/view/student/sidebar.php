@@ -4,7 +4,7 @@
     <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header d-flex justify-content-between align-items-center">
-            <h5 class="mb-0">Student Panel</h5>
+            <h5 class="mb-0">PEQuest <br>Student Panel</h5>
             <button class="btn btn-sm btn-light toggle-sidebar-btn" id="closeSidebar" type="button">
                 <i class="fas fa-times"></i>
             </button>
