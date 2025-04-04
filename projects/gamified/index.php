@@ -178,7 +178,7 @@ if (isset($_SESSION['is_logged_in'])) {
         <div class="login-container">
             <div class="login-header">
                 <i class="fas fa-user-astronaut"></i>
-                <h2>Mission Control</h2>
+                <h2>PEQuest</h2>
                 <p class="text-muted">Authenticate to continue your journey</p>
             </div>
 
