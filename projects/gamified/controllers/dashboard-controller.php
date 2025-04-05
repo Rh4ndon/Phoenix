@@ -19,11 +19,11 @@ $pending_grading = countAllRecords(
 
 // Get recent submissions
 $recent_submissions = getAllRecords(
-    "student_answers sa 
-    JOIN users u ON sa.student_id = u.user_id 
-    JOIN quizzes q ON sa.quiz_id = q.quiz_id 
+    "student_answers sa
+    JOIN users u ON sa.student_id = u.user_id
+    JOIN quizzes q ON sa.quiz_id = q.quiz_id
     JOIN questions qu ON sa.question_id = qu.question_id",
-    "GROUP BY sa.quiz_id ORDER BY sa.taken_at DESC LIMIT 10"
+    "GROUP BY sa.student_id , sa.quiz_id ORDER BY sa.taken_at DESC LIMIT 10"
 );
 
 // Get system alerts/activities
