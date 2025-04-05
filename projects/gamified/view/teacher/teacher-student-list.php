@@ -153,174 +153,39 @@
 
     <!-- Dashboard Content -->
     <div class="container-fluid">
-
-
-
-
-        <!-- Exams Table -->
+        <!-- Creation Section -->
         <div class="row mt-4">
 
-            <div class="col-md-3 mb-4">
-                <div class="card creation-card">
-                    <div class="card-header creation-header">
-                        <h5 class="mb-0">Create Question <i class="fas fa-pencil-alt"></i></h5>
-                        <div class="creation-badge">New</div>
+
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Students List <i class="fas fa-graduation-cap"></i></h5>
+
                     </div>
                     <div class="card-body">
-                        <form action="../../controllers/create-question.php" method="POST" id="examCreationForm">
-                            <input type="hidden" name="quiz_id" value="<?php echo $_GET['id']; ?>">
-                            <div class="form-group mb-3">
-                                <label for="question">Question</label>
-                                <input type="text" name="question" class="form-control" placeholder="Enter Question" required>
-                            </div>
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Last Name</th>
+                                        <th>First Name</th>
+                                        <th>Email</th>
 
-
-                            <div class="form-group mb-3">
-                                <label for="points">Points</label>
-                                <input type="number" name="points" class="form-control" placeholder="Enter Points" required>
-                            </div>
-
-                            <div class="form-group mb-3">
-                                <label for="question_type">Question Type</label>
-                                <select name="question_type" class="form-control" id="question_type" required>
-                                    <option value="" disabled selected>Select Question Type</option>
-                                    <option value="multiple_choice">Multiple Choice</option>
-                                    <option value="true_false">True/False</option>
-                                    <option value="short_text">Short Answer</option>
-                                </select>
-                            </div>
-
-                            <!-- Container for dynamic content -->
-                            <div id="question_options_container"></div>
-
-                            <script>
-                                const questionType = document.getElementById('question_type');
-                                const optionsContainer = document.getElementById('question_options_container');
-
-                                if (questionType) {
-                                    questionType.addEventListener('change', function() {
-                                        const selectedValue = questionType.value;
-                                        optionsContainer.innerHTML = ''; // Clear previous content
-
-                                        if (selectedValue === 'multiple_choice') {
-                                            // Create form for multiple choice
-                                            const options = ['A', 'B', 'C', 'D'];
-
-                                            options.forEach(option => {
-                                                // Create option input group
-                                                const optionGroup = document.createElement('div');
-                                                optionGroup.className = 'form-group mb-3';
-
-                                                // Create label
-                                                const label = document.createElement('label');
-                                                label.textContent = `Option ${option}`;
-
-                                                // Create input container
-                                                const inputContainer = document.createElement('div');
-                                                inputContainer.className = 'd-flex align-items-center';
-
-                                                // Create text input
-                                                const textInput = document.createElement('input');
-                                                textInput.type = 'text';
-                                                textInput.className = 'form-control me-2';
-                                                textInput.name = `option_${option.toLowerCase()}`;
-                                                textInput.placeholder = `Enter option ${option}`;
-                                                textInput.required = true;
-
-                                                // Create radio button for correct answer
-                                                const radioInput = document.createElement('input');
-                                                radioInput.type = 'radio';
-                                                radioInput.name = 'correct_answer';
-                                                radioInput.value = option.toLowerCase();
-                                                radioInput.className = 'form-check-input';
-                                                radioInput.required = true;
-
-                                                // Create radio label
-                                                const radioLabel = document.createElement('label');
-                                                radioLabel.className = 'form-check-label ms-2';
-                                                radioLabel.textContent = 'Correct';
-
-                                                // Append elements
-                                                inputContainer.appendChild(textInput);
-                                                inputContainer.appendChild(radioInput);
-                                                inputContainer.appendChild(radioLabel);
-
-                                                optionGroup.appendChild(label);
-                                                optionGroup.appendChild(inputContainer);
-
-                                                optionsContainer.appendChild(optionGroup);
-                                            });
-
-                                        } else if (selectedValue === 'true_false') {
-                                            // Create form for true/false
-                                            const optionGroup = document.createElement('div');
-                                            optionGroup.className = 'form-group mb-3';
-
-                                            const label = document.createElement('label');
-                                            label.textContent = 'Correct Answer';
-
-                                            const trueOption = createRadioOption('true', 'True', 'correct_answer');
-                                            const falseOption = createRadioOption('false', 'False', 'correct_answer');
-
-                                            optionGroup.appendChild(label);
-                                            optionGroup.appendChild(trueOption);
-                                            optionGroup.appendChild(falseOption);
-
-                                            optionsContainer.appendChild(optionGroup);
-                                        }
-                                        // For short_text, we don't need to add anything
-                                    });
-                                }
-
-                                // Helper function to create radio options
-                                function createRadioOption(value, text, name) {
-                                    const container = document.createElement('div');
-                                    container.className = 'form-check';
-
-                                    const input = document.createElement('input');
-                                    input.type = 'radio';
-                                    input.name = name;
-                                    input.value = value;
-                                    input.id = value;
-                                    input.className = 'form-check-input';
-                                    input.required = true;
-
-                                    const label = document.createElement('label');
-                                    label.className = 'form-check-label';
-                                    label.htmlFor = value;
-                                    label.textContent = text;
-
-                                    container.appendChild(input);
-                                    container.appendChild(label);
-
-                                    return container;
-                                }
-                            </script>
-
-
-                            <div class="form-group mb-3">
-
-                                <?php include '../../controllers/create-button.php'; ?>
-
-                            </div>
-                        </form>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php include '../../controllers/get-students.php'; ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-9">
-                <div class="card">
 
-
-                    <?php include '../../controllers/get-questions.php'; ?>
-
-
-
-                </div>
-            </div>
         </div>
-
-
     </div>
 </div>
 
@@ -377,7 +242,7 @@
     const creationAchievementText = document.getElementById('creationAchievementText');
     const creationCards = document.querySelectorAll('.creation-card, .exam-card');
     const actionButtons = document.querySelectorAll('.action-btn, .create-btn');
-    const creationForm = document.getElementById('examCreationForm');
+
 
     // Initialize
     document.addEventListener('DOMContentLoaded', function() {
@@ -394,8 +259,7 @@
         // Check for achievements
         checkCreationAchievements();
 
-        // Set up form progress
-        setupFormProgress();
+
     });
 
     // Initialize sound system
@@ -470,30 +334,7 @@
         });
     }
 
-    // Set up form progress tracking
-    function setupFormProgress() {
-        const formInputs = creationForm.querySelectorAll('input, textarea');
-        const progressBar = document.getElementById('creationProgress');
 
-        formInputs.forEach(input => {
-            input.addEventListener('input', () => {
-                let filledFields = 0;
-                formInputs.forEach(field => {
-                    if (field.value.trim() !== '') {
-                        filledFields++;
-                    }
-                });
-
-                const progress = (filledFields / formInputs.length) * 100;
-                progressBar.style.width = `${progress}%`;
-
-                if (progress === 100 && creationGameState.soundEnabled) {
-                    creationClickSound.currentTime = 0;
-                    creationClickSound.play().catch(e => console.log("Progress sound error:", e));
-                }
-            });
-        });
-    }
 
     // Load game state
     function loadCreationGameState() {
@@ -556,25 +397,6 @@
             creationAchievementNotification.classList.remove('show');
         }, 3000);
     }
-
-    // Handle form submission
-    creationForm.addEventListener('submit', function(e) {
-        if (creationGameState.soundEnabled) {
-            creationAchievementSound.currentTime = 0;
-            creationAchievementSound.play().catch(e => console.log("Achievement sound error:", e));
-        }
-
-        // Update creation stats
-        creationGameState.examsCreated++;
-        creationGameState.quests.createExams.current++;
-
-        // Award XP for creating exam
-        awardCreationXP(20, "New Exam Created!");
-
-        // Save state and check achievements
-        saveCreationGameState();
-        checkCreationAchievements();
-    });
 </script>
 
 <!-- Footer -->

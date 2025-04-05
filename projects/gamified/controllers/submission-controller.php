@@ -23,5 +23,5 @@ $recent_submissions = getAllRecords(
     JOIN users u ON sa.student_id = u.user_id 
     JOIN quizzes q ON sa.quiz_id = q.quiz_id 
     JOIN questions qu ON sa.question_id = qu.question_id",
-    "GROUP BY sa.student_id , sa.quiz_id ORDER BY sa.taken_at"
+    "GROUP BY sa.quiz_id ORDER BY sa.taken_at"
 );
