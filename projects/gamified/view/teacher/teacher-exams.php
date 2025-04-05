@@ -309,7 +309,7 @@
         // Set volume levels
         creationBackgroundMusic.volume = 0.3;
         creationAchievementSound.volume = 0.6;
-        creationHoverSound.volume = 0.4;
+        creationHoverSound.volume = 0.2;
         creationClickSound.volume = 0.5;
 
         // Try to play background music
