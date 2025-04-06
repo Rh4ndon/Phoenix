@@ -16,7 +16,12 @@ if (isset($_POST['create-question'])) {
 
 
 
-    $record = insertRecord('questions', ['quiz_id' => $quiz_id, 'question_text' => $question_text, 'question_type' => $question_type, 'points' => $points]);
+    $record = insertRecord('questions', [
+        'quiz_id' => $quiz_id,
+        'question_text' => addslashes($question_text),
+        'question_type' => addslashes($question_type),
+        'points' => $points
+    ]);
 
     $question = getRecord('questions', 'quiz_id = ' . $quiz_id . ' AND question_text = "' . $question_text . '" AND question_type = "' . $question_type . '" AND points = ' . $points);
 
@@ -45,7 +50,7 @@ if (isset($_POST['create-question'])) {
 
             $record_options = insertRecord('question_options', [
                 'question_id' => $question['question_id'],
-                'option_text' => $option,
+                'option_text' => addslashes($option),
                 'is_correct' => $is_correct
             ]);
             if (!$record_options) {

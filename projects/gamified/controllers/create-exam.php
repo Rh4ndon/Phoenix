@@ -14,7 +14,7 @@ if (isset($_POST['create-exam'])) {
     $description = $_POST['description'];
     $is_published = 1;
 
-    $record = insertRecord('quizzes', ['title' => $title, 'subject' => $subject, 'description' => $description, 'time_limit' => $time, 'is_published' => $is_published, 'created_by' => $_SESSION['user_id']]);
+    $record = insertRecord('quizzes', ['title' => addslashes($title), 'subject' => addslashes($subject), 'description' => addslashes($description), 'time_limit' => $time, 'is_published' => $is_published, 'created_by' => $_SESSION['user_id']]);
 
     if ($record) {
         header("Location: ../view/teacher/teacher-exams.php?msg=Exam Created Successfully");
