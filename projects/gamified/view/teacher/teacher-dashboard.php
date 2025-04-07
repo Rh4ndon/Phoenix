@@ -35,8 +35,8 @@
 
     .teacher-dashboard .achievement-badge {
         position: absolute;
-        top: -10px;
-        right: -10px;
+        top: 5px;
+        right: 1px;
         width: 30px;
         height: 30px;
         background: gold;
@@ -176,77 +176,80 @@
             <span id="teacherXpDisplay">(0/100 XP)</span>
         </div>
 
-        <!-- Stats Cards -->
+        <!-- PE Theme Stats Cards -->
         <div class="row">
             <div class="col-md-3">
-                <div class="card stat-card bg-primary text-white" id="studentsCard">
-                    <div class="achievement-badge">S</div>
+                <div class="card stat-card quest-pulse" style="background: linear-gradient(135deg, #2b5876 0%, #4e4376 100%);" id="studentsCard">
+                    <div class="achievement-badge" style="background-color: #FFD700; color: #333;">🏆</div>
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
-                                <div class="card-value"><?php echo $total_students; ?></div>
-                                <div class="card-title text-white">Total Students</div>
+                                <div class="card-value text-white"><?php echo $total_students; ?></div>
+                                <div class="card-title text-white">Active Athletes</div>
                                 <div class="progress-container">
-                                    <div class="progress-bar" id="studentsProgress"></div>
+                                    <div class="progress-bar" id="studentsProgress" style="background-color: #FFD700;"></div>
                                 </div>
                             </div>
-                            <i class="fas fa-users card-icon"></i>
+                            <i class="fas fa-running card-icon text-white"></i>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="col-md-3">
-                <div class="card stat-card bg-success text-white" id="examsCard">
+                <div class="card stat-card" style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);" id="examsCard">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
                                 <div class="card-value"><?php echo $active_exams; ?></div>
                                 <div class="card-title text-white">Active Exams</div>
                                 <div class="progress-container">
-                                    <div class="progress-bar" id="examsProgress"></div>
+                                    <div class="progress-bar" id="examsProgress" style="background-color: #FF6B6B;"></div>
                                 </div>
                             </div>
-                            <i class="fas fa-clipboard-list card-icon"></i>
+                            <i class="fas fa-stopwatch card-icon text-white"></i>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="col-md-3">
-                <div class="card stat-card bg-info text-white" id="submissionsCard">
+                <div class="card stat-card" style="background: linear-gradient(135deg, #e65c00 0%, #F9D423 100%);" id="submissionsCard">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
                                 <div class="card-value"><?php echo $submissions_today; ?></div>
                                 <div class="card-title text-white">Submissions Today</div>
                                 <div class="progress-container">
-                                    <div class="progress-bar" id="submissionsProgress"></div>
+                                    <div class="progress-bar" id="submissionsProgress" style="background-color: #4ECDC4;"></div>
                                 </div>
                             </div>
-                            <i class="fas fa-file-upload card-icon"></i>
+                            <i class="fas fa-dumbbell card-icon text-white"></i>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="col-md-3">
-                <div class="card stat-card bg-warning text-dark" id="gradingCard">
+                <div class="card stat-card" style="background: linear-gradient(135deg, #4568DC 0%, #B06AB3 100%);" id="gradingCard">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
                                 <div class="card-value"><?php echo $pending_grading; ?></div>
                                 <div class="card-title text-dark">Pending Grading</div>
                                 <div class="progress-container">
-                                    <div class="progress-bar" id="gradingProgress"></div>
+                                    <div class="progress-bar" id="gradingProgress" style="background-color: #FFEE58;"></div>
                                 </div>
                             </div>
-                            <i class="fas fa-check-double card-icon"></i>
+                            <i class="fas fa-clipboard-check card-icon text-white"></i>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+
+
 
         <!-- Recent Exam Submissions -->
         <div class="row mt-4">

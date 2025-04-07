@@ -55,6 +55,9 @@
     }
 
     .achievement-badge {
+        position: absolute;
+        top: 5px;
+        right: 1px;
         width: 30px;
         height: 30px;
         background: gold;
@@ -205,10 +208,8 @@
         <!-- Stats Cards with Gamification -->
         <div class="row">
             <div class="col-md-3">
-                <div class="card stat-card bg-success text-white quest-pulse" id="activeExamsCard">
-                    <div class="badge-container">
-                        <div class="achievement-badge">!</div>
-                    </div>
+                <div class="card stat-card quest-pulse" style="background: linear-gradient(135deg, #2b5876 0%, #4e4376 100%);" id="activeExamsCard">
+                    <div class="achievement-badge" style="background-color: #FFD700; color: #333;">🏆</div>
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
@@ -218,14 +219,14 @@
                                     <div class="xp-progress-bar" id="examProgress"></div>
                                 </div>
                             </div>
-                            <i class="fas fa-clipboard-list card-icon"></i>
+                            <i class="fas fa-running card-icon text-white"></i>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="col-md-3">
-                <div class="card stat-card bg-info text-white" id="submissionsCard">
+                <div class="card stat-card" style="background: linear-gradient(135deg, #e65c00 0%, #F9D423 100%);" id=submissionsCard>
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
@@ -235,14 +236,14 @@
                                     <div class="xp-progress-bar" id="submissionProgress"></div>
                                 </div>
                             </div>
-                            <i class="fas fa-file-upload card-icon"></i>
+                            <i class="fas fa-dumbbell card-icon text-white"></i>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="col-md-3">
-                <div class="card stat-card bg-warning text-dark" id="gradingCard">
+                <div class="card stat-card" style="background: linear-gradient(135deg, #4568DC 0%, #B06AB3 100%);" id="gradingCard">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
@@ -252,7 +253,7 @@
                                     <div class="xp-progress-bar" id="gradingProgress"></div>
                                 </div>
                             </div>
-                            <i class="fas fa-check-double card-icon"></i>
+                            <i class="fas fa-clipboard-check card-icon text-white"></i>
                         </div>
                     </div>
                 </div>
