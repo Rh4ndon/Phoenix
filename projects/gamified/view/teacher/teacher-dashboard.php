@@ -484,11 +484,11 @@
 
         // Update progress bars
         document.getElementById('studentsProgress').style.width =
-            `${(teacherGameState.studentsHelped / <?php echo $total_students; ?>) * 100}%`;
+            `${(<?php echo $total_students; ?> / 100) * 100}%`;
         document.getElementById('examsProgress').style.width =
-            `${(<?php echo $active_exams; ?> / 10) * 100}%`; // Assuming max 10 active exams
+            `${(<?php echo $active_exams; ?> / 50) * 100}%`; // Assuming max 50 active exams
         document.getElementById('submissionsProgress').style.width =
-            `${(<?php echo $submissions_today; ?> / 20) * 100}%`; // Assuming max 20 submissions
+            `${(<?php echo $submissions_today; ?> / 50) * 100}%`; // Assuming max 50 submissions
         document.getElementById('gradingProgress').style.width =
             `${(<?php echo $pending_grading; ?> / 10) * 100}%`; // Assuming max 10 pending
         document.getElementById('gradingQuestProgress').style.width =
