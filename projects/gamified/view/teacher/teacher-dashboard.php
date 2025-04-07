@@ -185,7 +185,7 @@
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
                                 <div class="card-value text-white"><?php echo $total_students; ?></div>
-                                <div class="card-title text-white">Active Athletes</div>
+                                <div class="card-title text-white">Active Students</div>
                                 <div class="progress-container">
                                     <div class="progress-bar" id="studentsProgress" style="background-color: #FFD700;"></div>
                                 </div>
