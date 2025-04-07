@@ -226,7 +226,7 @@
             </div>
 
             <div class="col-md-3">
-                <div class="card stat-card" style="background: linear-gradient(135deg, #e65c00 0%, #F9D423 100%);" id=submissionsCard>
+                <div class="card stat-card" style="background: linear-gradient(135deg, #e65c00 0%, #F9D423 100%);" id="submissionsCard">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
