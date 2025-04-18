@@ -8,6 +8,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
         :root {
             --primary-color: #1d9ffd;
@@ -39,6 +41,7 @@
         .btn-primary-custom:hover {
             background-color: #0d8ee6;
             border-color: #0d8ee6;
+            transform: translateY(-2px);
         }
         
         .btn-secondary-custom {
@@ -50,37 +53,76 @@
         .btn-secondary-custom:hover {
             background-color: #302fe6;
             border-color: #302fe6;
+            transform: translateY(-2px);
         }
         
         .hero-section {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
             padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(255,255,255,0.05)" d="M0,0 L100,0 L100,100 Q50,80 0,100 Z"></path></svg>');
+            background-size: 100% 50%;
+            background-repeat: no-repeat;
+            background-position: bottom;
+            animation: waveAnimation 10s linear infinite;
+        }
+        
+        @keyframes waveAnimation {
+            0% { background-position-x: 0; }
+            100% { background-position-x: 100%; }
         }
         
         .feature-icon {
             font-size: 2.5rem;
             margin-bottom: 1rem;
             color: var(--secondary-color);
+            transition: all 0.3s ease;
+        }
+        
+        .feature-icon:hover {
+            transform: scale(1.2) rotate(10deg);
         }
         
         .service-card {
-            transition: transform 0.3s ease;
+            transition: all 0.4s ease;
             border: none;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         
         .service-card:hover {
             transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
         }
         
         .service-card .card-header {
             background-color: var(--primary-color);
             color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover .card-header {
+            background-color: var(--secondary-color);
         }
         
         .testimonial-card {
             border-left: 4px solid var(--secondary-color);
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
         
         footer {
@@ -89,7 +131,7 @@
         }
 
         .contact-method {
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             border: 1px solid #eee;
             border-radius: 8px;
             padding: 20px;
@@ -97,7 +139,7 @@
         }
 
         .contact-method:hover {
-            transform: translateY(-5px);
+            transform: translateY(-5px) scale(1.03);
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
 
@@ -105,6 +147,58 @@
             font-size: 2.5rem;
             margin-bottom: 1rem;
             color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .contact-method:hover .contact-icon {
+            transform: scale(1.2);
+            color: var(--secondary-color);
+        }
+        
+        .logo-img {
+            height: 40px;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-brand:hover .logo-img {
+            transform: rotate(10deg);
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .typing-text {
+            border-right: 3px solid white;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typing 3s steps(30) 1s 1 normal both, blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: white }
         }
     </style>
 </head>
@@ -112,8 +206,8 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="#">
-                <span class="text-primary-custom">Nova</span> <span class="text-secondary-custom">Virtual Solution</span>
+            <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
+                <img src="logo.jpeg" alt="Nova Virtual Solution" class="logo-img me-2">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -133,25 +227,27 @@
                         <a class="nav-link" href="#contact">Contact</a>
                     </li>
                 </ul>
-                <a href="#contact" class="btn btn-primary-custom ms-lg-3">Get Started</a>
+                <a href="#contact" class="btn btn-primary-custom ms-lg-3 animate__animated animate__pulse animate__infinite">Get Started</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero-section">
-        <div class="container">
+        <div class="container position-relative">
             <div class="row align-items-center">
-                <div class="col-lg-6">
+                <div class="col-lg-6 animate__animated animate__fadeInLeft">
                     <h1 class="display-4 fw-bold mb-4">Professional Virtual Assistance for Your Business</h1>
-                    <p class="lead mb-4">Free up your time and grow your business with our dedicated virtual assistants.</p>
+                    <div class="typing-text mb-4">
+                        <p class="lead">Bridging talents, connecting worlds!</p>
+                    </div>
                     <div class="d-flex gap-3">
-                        <a href="#contact" class="btn btn-light btn-lg">Get Started</a>
+                        <a href="#contact" class="btn btn-light btn-lg pulse">Get Started</a>
                         <a href="#services" class="btn btn-outline-light btn-lg">Our Services</a>
                     </div>
                 </div>
-                <div class="col-lg-6 d-none d-lg-block">
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Virtual Assistant" class="img-fluid rounded shadow">
+                <div class="col-lg-6 d-none d-lg-block animate__animated animate__fadeInRight">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Virtual Assistant" class="img-fluid rounded shadow floating">
                 </div>
             </div>
         </div>
@@ -161,14 +257,14 @@
     <section class="py-5">
         <div class="container">
             <div class="row text-center mb-5">
-                <div class="col">
+                <div class="col animate__animated animate__fadeInUp">
                     <h2 class="fw-bold">Why Choose Nova Virtual Solution</h2>
                     <p class="text-muted">We provide top-notch virtual assistance tailored to your needs</p>
                 </div>
             </div>
             <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="text-center p-4">
+                <div class="col-md-4 animate__animated animate__fadeInUp" data-wow-delay="0.1s">
+                    <div class="text-center p-4 h-100">
                         <div class="feature-icon">
                             <i class="fas fa-clock"></i>
                         </div>
@@ -176,8 +272,8 @@
                         <p class="text-muted">Focus on what matters most while we handle the rest. Get back hours in your day.</p>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="text-center p-4">
+                <div class="col-md-4 animate__animated animate__fadeInUp" data-wow-delay="0.2s">
+                    <div class="text-center p-4 h-100">
                         <div class="feature-icon">
                             <i class="fas fa-dollar-sign"></i>
                         </div>
@@ -185,8 +281,8 @@
                         <p class="text-muted">No overhead costs. Pay only for the services you need when you need them.</p>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="text-center p-4">
+                <div class="col-md-4 animate__animated animate__fadeInUp" data-wow-delay="0.3s">
+                    <div class="text-center p-4 h-100">
                         <div class="feature-icon">
                             <i class="fas fa-user-tie"></i>
                         </div>
@@ -202,13 +298,13 @@
     <section id="services" class="py-5 bg-light">
         <div class="container">
             <div class="row text-center mb-5">
-                <div class="col">
+                <div class="col animate__animated animate__fadeInUp">
                     <h2 class="fw-bold">Our Services</h2>
                     <p class="text-muted">Comprehensive virtual assistance for all your business needs</p>
                 </div>
             </div>
             <div class="row g-4">
-                <div class="col-md-4">
+                <div class="col-md-4 animate__animated animate__fadeInLeft">
                     <div class="card service-card h-100">
                         <div class="card-header py-3">
                             <h5 class="mb-0"><i class="fas fa-envelope me-2"></i> Administrative Support</h5>
@@ -224,7 +320,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 animate__animated animate__fadeInUp">
                     <div class="card service-card h-100">
                         <div class="card-header py-3">
                             <h5 class="mb-0"><i class="fas fa-bullhorn me-2"></i> Marketing Support</h5>
@@ -240,7 +336,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 animate__animated animate__fadeInRight">
                     <div class="card service-card h-100">
                         <div class="card-header py-3">
                             <h5 class="mb-0"><i class="fas fa-chart-line me-2"></i> Business Support</h5>
@@ -264,15 +360,15 @@
     <section id="about" class="py-5">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-6 mb-4 mb-lg-0">
+                <div class="col-lg-6 mb-4 mb-lg-0 animate__animated animate__fadeInLeft">
                     <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="About Nova Virtual Solution" class="img-fluid rounded shadow">
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-6 animate__animated animate__fadeInRight">
                     <h2 class="fw-bold mb-4">About Nova Virtual Solution</h2>
                     <p class="lead">We're dedicated to helping businesses thrive by providing exceptional virtual assistance services.</p>
                     <p>Founded in 2023, Nova Virtual Solution has quickly become a trusted partner for entrepreneurs and businesses looking to streamline their operations. Our team of skilled professionals is committed to delivering high-quality support tailored to your specific needs.</p>
                     <p>We believe that every business deserves access to top-tier administrative support without the overhead of full-time employees. Our flexible solutions allow you to scale up or down as your needs change.</p>
-                    <a href="#contact" class="btn btn-primary-custom mt-3">Contact Us Today</a>
+                    <a href="#contact" class="btn btn-primary-custom mt-3 pulse">Contact Us Today</a>
                 </div>
             </div>
         </div>
@@ -282,13 +378,13 @@
     <section id="testimonials" class="py-5 bg-light">
         <div class="container">
             <div class="row text-center mb-5">
-                <div class="col">
+                <div class="col animate__animated animate__fadeInUp">
                     <h2 class="fw-bold">What Our Clients Say</h2>
                     <p class="text-muted">Don't just take our word for it</p>
                 </div>
             </div>
             <div class="row g-4">
-                <div class="col-md-4">
+                <div class="col-md-4 animate__animated animate__fadeInLeft">
                     <div class="card h-100 p-4 testimonial-card">
                         <div class="card-body">
                             <div class="mb-3 text-warning">
@@ -309,7 +405,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 animate__animated animate__fadeInUp">
                     <div class="card h-100 p-4 testimonial-card">
                         <div class="card-body">
                             <div class="mb-3 text-warning">
@@ -330,7 +426,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 animate__animated animate__fadeInRight">
                     <div class="card h-100 p-4 testimonial-card">
                         <div class="card-body">
                             <div class="mb-3 text-warning">
@@ -357,24 +453,24 @@
 
     <!-- CTA Section -->
     <section class="py-5 bg-primary-custom text-white">
-        <div class="container text-center">
+        <div class="container text-center animate__animated animate__zoomIn">
             <h2 class="fw-bold mb-4">Ready to Transform Your Business?</h2>
             <p class="lead mb-5">Get started with a professional virtual assistant today and experience the difference.</p>
-            <a href="#contact" class="btn btn-light btn-lg px-5">Contact Us Now</a>
+            <a href="#contact" class="btn btn-light btn-lg px-5 pulse">Contact Us Now</a>
         </div>
     </section>
 
     <!-- Contact Section -->
     <section id="contact" class="py-5">
         <div class="container">
-            <div class="row text-center mb-5">
+            <div class="row text-center mb-5 animate__animated animate__fadeInUp">
                 <div class="col">
                     <h2 class="fw-bold">Get In Touch</h2>
                     <p class="lead">We'd love to hear from you! Reach out via email or Facebook Messenger.</p>
                 </div>
             </div>
             <div class="row justify-content-center">
-                <div class="col-md-5 mb-4 mb-md-0">
+                <div class="col-md-5 mb-4 mb-md-0 animate__animated animate__fadeInLeft">
                     <div class="contact-method h-100">
                         <div class="contact-icon">
                             <i class="fas fa-envelope"></i>
@@ -386,7 +482,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-5 animate__animated animate__fadeInRight">
                     <div class="contact-method h-100">
                         <div class="contact-icon">
                             <i class="fab fa-facebook-messenger"></i>
@@ -399,7 +495,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row mt-5">
+            <div class="row mt-5 animate__animated animate__fadeInUp">
                 <div class="col text-center">
                     <h5 class="mb-3">Or give us a call</h5>
                     <p class="h4"><i class="fas fa-phone-alt text-primary-custom me-2"></i> +1 (555) 123-4567</p>
@@ -413,9 +509,9 @@
     <footer class="py-5">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4 mb-4 mb-lg-0">
+                <div class="col-lg-4 mb-4 mb-lg-0 animate__animated animate__fadeInUp">
                     <h5 class="text-white mb-4">Nova Virtual Solution</h5>
-                    <p>Providing exceptional virtual assistance services to help businesses grow and thrive.</p>
+                    <p>Bridging talents, connecting worlds!</p>
                     <div class="mt-4">
                         <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
@@ -423,7 +519,7 @@
                         <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                <div class="col-lg-2 col-md-6 mb-4 mb-md-0 animate__animated animate__fadeInUp" data-wow-delay="0.1s">
                     <h5 class="text-white mb-4">Services</h5>
                     <ul class="list-unstyled">
                         <li class="mb-2"><a href="#services" class="text-white-50 text-decoration-none">Administrative</a></li>
@@ -432,7 +528,7 @@
                         <li><a href="#services" class="text-white-50 text-decoration-none">Custom Packages</a></li>
                     </ul>
                 </div>
-                <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                <div class="col-lg-2 col-md-6 mb-4 mb-md-0 animate__animated animate__fadeInUp" data-wow-delay="0.2s">
                     <h5 class="text-white mb-4">Company</h5>
                     <ul class="list-unstyled">
                         <li class="mb-2"><a href="#about" class="text-white-50 text-decoration-none">About Us</a></li>
@@ -441,7 +537,7 @@
                         <li><a href="#contact" class="text-white-50 text-decoration-none">Contact</a></li>
                     </ul>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 animate__animated animate__fadeInUp" data-wow-delay="0.3s">
                     <h5 class="text-white mb-4">Location</h5>
                     <p><i class="fas fa-map-marker-alt text-primary-custom me-2"></i> 123 Business Ave, Suite 100<br>New York, NY 10001</p>
                 </div>
@@ -463,5 +559,36 @@
 
     <!-- Bootstrap 5 JS Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Simple script to trigger animations when elements come into view
+        document.addEventListener('DOMContentLoaded', function() {
+            const animateElements = document.querySelectorAll('.animate__animated');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const animation = entry.target.getAttribute('class').match(/animate__(\w+)/)[1];
+                        entry.target.classList.add(`animate__${animation}`);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            animateElements.forEach(element => {
+                observer.observe(element);
+            });
+            
+            // Add hover effect to all buttons
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach(button => {
+                button.addEventListener('mouseenter', () => {
+                    button.style.transform = 'translateY(-2px)';
+                });
+                button.addEventListener('mouseleave', () => {
+                    button.style.transform = '';
+                });
+            });
+        });
+    </script>
 </body>
 </html>
