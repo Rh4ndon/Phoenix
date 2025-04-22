@@ -8,11 +8,25 @@ try {
     if (!empty($records)) {
         foreach ($records as $student) {
             $student['created_at'] = date('F j, Y', strtotime($student['created_at']));
+            if ($student['section_id'] == null) {
+                $student['section_id'] = 0;
+            }
+            $section = getAllRecords('sections', 'WHERE section_id = ' . $student['section_id']);
+
 ?>
             <tr class="exam-card">
                 <td><?php echo $student['last_name']; ?></td>
                 <td><?php echo $student['first_name']; ?></td>
                 <td><?php echo $student['email']; ?></td>
+                <td>
+                    <?php
+                    if (!empty($section)) {
+                        echo $section[0]['section_name'];
+                    } else {
+                        echo 'No Section';
+                    }
+                    ?>
+                </td>
 
                 <td>
 

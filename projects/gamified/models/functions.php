@@ -71,3 +71,20 @@ function countAllRecords($table, $whereCondition = '1')
     $row = mysqli_fetch_assoc($result);
     return $row['total'];
 }
+
+function updateRecord($table, $data, $condition)
+{
+    global $conn;
+
+    $updates = [];
+    foreach ($data as $key => $value) {
+        if ($value === null || $value === 'NULL') {
+            $updates[] = "$key = NULL";  // No quotes around NULL
+        } else {
+            $updates[] = "$key = '" . mysqli_real_escape_string($conn, $value) . "'";
+        }
+    }
+
+    $sql = "UPDATE $table SET " . implode(', ', $updates) . " WHERE $condition";
+    return mysqli_query($conn, $sql);
+}

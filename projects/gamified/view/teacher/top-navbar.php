@@ -6,6 +6,9 @@
     <?php
     $pageName = basename($_SERVER['PHP_SELF'], '.php');
     $formattedPageName = ucwords(str_replace('-', ' ', $pageName));
+    if ($pageName == 'teacher-student-list') {
+        $formattedPageName = "Teacher's Student List";
+    }
     ?>
     <h4 class="mb-0 page-name">
         <?php echo $formattedPageName; ?>

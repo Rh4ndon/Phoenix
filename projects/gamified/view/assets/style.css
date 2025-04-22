@@ -183,3 +183,24 @@ body {
         display: none;
     }
 }
+
+@media print {
+    .sidebar {
+        display: none !important;
+    }
+    .top-navbar {
+        display: none !important;
+    }
+    .dont-print {
+        display: none !important;
+    }
+
+    .container-fluid{
+        padding: 0 !important;
+        width: 100% !important;
+    }
+    .main-content {
+        margin-left: 10px !important;
+        padding: 10px !important;
+    }
+}
