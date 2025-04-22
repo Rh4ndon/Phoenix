@@ -272,8 +272,8 @@
                                     <tr>
                                         <th>Student ID</th>
                                         <th>Name</th>
-                                        <th>Exam</th>
                                         <th>Section</th>
+                                        <th>Exam</th>
                                         <th>Submission Time</th>
                                         <th>Status</th>
                                         <th>Score</th>
