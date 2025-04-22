@@ -286,7 +286,11 @@
                                         $quiz = getRecord('quizzes', "quiz_id = {$submission['quiz_id']}");
                                         $question = getAllRecords('questions', "WHERE quiz_id = {$submission['quiz_id']}");
                                         $student_answers = getAllRecords('student_answers', "WHERE quiz_id = {$submission['quiz_id']} AND student_id = {$submission['student_id']}");
-                                        $student_section = getRecord('sections', "section_id = {$student['section_id']}");
+                                        if ($student['section_id'] != null) {
+                                            $student_section = getRecord('sections', "section_id = {$student['section_id']}");
+                                        } else {
+                                            $student_section = ['section_name' => 'N/A'];
+                                        }
                                         $student_grade = 0;
                                         foreach ($student_answers as $answer) {
                                             $student_grade += $answer['points_earned'];
