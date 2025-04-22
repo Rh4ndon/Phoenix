@@ -21,6 +21,7 @@ if (isset($_POST['login'])) {
             $_SESSION['email'] = $user['email'];
             $_SESSION['is_logged_in'] = true;
             $_SESSION['login_time'] = time();
+            $_SESSION['section'] = $user['section_id'];
             header('Location: ../view/teacher/teacher-dashboard.php');
             exit();
         } else {
@@ -32,6 +33,7 @@ if (isset($_POST['login'])) {
             $_SESSION['email'] = $user['email'];
             $_SESSION['is_logged_in'] = true;
             $_SESSION['login_time'] = time();
+            $_SESSION['section'] = $user['section_id'];
             header('Location: ../view/student/student-dashboard.php');
             exit();
         }

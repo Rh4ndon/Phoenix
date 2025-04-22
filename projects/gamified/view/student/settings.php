@@ -46,6 +46,15 @@
                                 <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com" required value="<?php echo $_SESSION['email']; ?>">
                             </div>
                         </div>
+                        <div class="mb-3">
+                            <label for="section" class="form-label">Section</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-book"></i></span>
+                                <?php include '../../controllers/get-section-settings.php'; ?>
+                            </div>
+                        </div>
+
+
 
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>

@@ -155,12 +155,34 @@
     <div class="container-fluid">
         <!-- Creation Section -->
         <div class="row mt-4">
+            <div class="col-md-3 mb-4">
+                <div class="card creation-card">
+                    <div class="card-header creation-header">
+                        <h5 class="mb-0">Create Section<i class="fas fa-pencil-alt"></i></h5>
+                        <div class="creation-badge">New</div>
+                    </div>
+                    <div class="card-body">
+                        <form action="../../controllers/create-section.php" method="POST" id="examCreationForm">
+                            <div class="form-group mb-3">
+                                <label for="section_name">Section Name</label>
+                                <input type="text" name="section_name" class="form-control" placeholder="Enter Section Name" required>
+                            </div>
 
+                            <div class="creation-progress">
+                                <div class="creation-progress-bar" id="creationProgress"></div>
+                            </div>
+                            <div class="form-group mb-3">
+                                <input type="submit" name="create-section" class="btn btn-primary create-btn" value="Create Section">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
 
-            <div class="col-md-12">
+            <div class="col-md-9">
                 <div class="card">
                     <div class="card-header bg-white d-flex justify-content-between align-items-center">
-                        <h5 class="mb-0">Student List <i class="fas fa-graduation-cap"></i></h5>
+                        <h5 class="mb-0">Exams/Quizzes <i class="fas fa-folder"></i></h5>
 
                     </div>
                     <div class="card-body">
@@ -168,16 +190,12 @@
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Last Name</th>
-                                        <th>First Name</th>
-                                        <th>Email</th>
-                                        <th>Section</th>
-
+                                        <th>Section Name</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php include '../../controllers/get-students.php'; ?>
+                                    <?php include '../../controllers/get-section.php'; ?>
                                 </tbody>
                             </table>
                         </div>
@@ -243,13 +261,15 @@
     const creationAchievementText = document.getElementById('creationAchievementText');
     const creationCards = document.querySelectorAll('.creation-card, .exam-card');
     const actionButtons = document.querySelectorAll('.action-btn, .create-btn');
-
+    const creationForm = document.getElementById('examCreationForm');
 
     // Initialize
     document.addEventListener('DOMContentLoaded', function() {
         // Load saved game state
         loadCreationGameState();
 
+        // Update UI
+        updateCreationGameUI();
 
         // Initialize sound
         initCreationSound();
@@ -260,7 +280,8 @@
         // Check for achievements
         checkCreationAchievements();
 
-
+        // Set up form progress
+        setupFormProgress();
     });
 
     // Initialize sound system
@@ -335,7 +356,30 @@
         });
     }
 
+    // Set up form progress tracking
+    function setupFormProgress() {
+        const formInputs = creationForm.querySelectorAll('input, textarea');
+        const progressBar = document.getElementById('creationProgress');
 
+        formInputs.forEach(input => {
+            input.addEventListener('input', () => {
+                let filledFields = 0;
+                formInputs.forEach(field => {
+                    if (field.value.trim() !== '') {
+                        filledFields++;
+                    }
+                });
+
+                const progress = (filledFields / formInputs.length) * 100;
+                progressBar.style.width = `${progress}%`;
+
+                if (progress === 100 && creationGameState.soundEnabled) {
+                    creationClickSound.currentTime = 0;
+                    creationClickSound.play().catch(e => console.log("Progress sound error:", e));
+                }
+            });
+        });
+    }
 
     // Load game state
     function loadCreationGameState() {
@@ -350,7 +394,11 @@
         localStorage.setItem('creationGameState', JSON.stringify(creationGameState));
     }
 
-
+    // Update game UI
+    function updateCreationGameUI() {
+        document.getElementById('creationQuestProgress').style.width =
+            `${(creationGameState.quests.createExams.current / creationGameState.quests.createExams.target) * 100}%`;
+    }
 
     // Check for achievements
     function checkCreationAchievements() {
@@ -398,6 +446,25 @@
             creationAchievementNotification.classList.remove('show');
         }, 3000);
     }
+
+    // Handle form submission
+    creationForm.addEventListener('submit', function(e) {
+        if (creationGameState.soundEnabled) {
+            creationAchievementSound.currentTime = 0;
+            creationAchievementSound.play().catch(e => console.log("Achievement sound error:", e));
+        }
+
+        // Update creation stats
+        creationGameState.examsCreated++;
+        creationGameState.quests.createExams.current++;
+
+        // Award XP for creating exam
+        awardCreationXP(20, "New Exam Created!");
+
+        // Save state and check achievements
+        saveCreationGameState();
+        checkCreationAchievements();
+    });
 </script>
 
 <!-- Footer -->

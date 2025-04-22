@@ -193,6 +193,7 @@
                                     <tr>
                                         <th>Student ID</th>
                                         <th>Name</th>
+                                        <th>Section</th>
                                         <th>Exam</th>
                                         <th>Submission Time</th>
                                         <th>Status</th>
@@ -206,6 +207,7 @@
                                         $quiz = getRecord('quizzes', "quiz_id = {$submission['quiz_id']}");
                                         $question = getAllRecords('questions', "WHERE quiz_id = {$submission['quiz_id']}");
                                         $student_answers = getAllRecords('student_answers', "WHERE quiz_id = {$submission['quiz_id']} AND student_id = {$submission['student_id']}");
+                                        $student_section = getRecord('sections', "section_id = {$student['section_id']}");
                                         $student_grade = 0;
                                         foreach ($student_answers as $answer) {
                                             $student_grade += $answer['points_earned'];
@@ -220,6 +222,7 @@
                                         <tr>
                                             <td>#<?php echo $submission['student_id']; ?></td>
                                             <td><?php echo "{$student['first_name']} {$student['last_name']}"; ?></td>
+                                            <td><?php echo $student_section['section_name']; ?></td>
                                             <td><?php echo $quiz['title']; ?></td>
                                             <td><?php echo date('F j, Y H:i', strtotime($submission['taken_at'])); ?></td>
                                             <td><span class="badge <?php echo $status_class; ?>"><?php echo $status_text; ?></span></td>

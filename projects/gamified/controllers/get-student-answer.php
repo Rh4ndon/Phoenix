@@ -24,7 +24,7 @@ $student = getRecord('users', 'user_id = ' . $student_id);
     <input type="hidden" name="student_id" value="<?php echo $student_id; ?>">
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-hover">
+            <table class="table table-hover" id="exam">
                 <thead>
                     <tr>
 
@@ -32,6 +32,7 @@ $student = getRecord('users', 'user_id = ' . $student_id);
                         <th>Type</th>
                         <th>Points</th>
                         <th>Options</th>
+                        <th>Correct Answer</th>
                         <th>Points Earned</th>
                     </tr>
                 </thead>
@@ -83,6 +84,40 @@ $student = getRecord('users', 'user_id = ' . $student_id);
                                         ?>
                                     </td>
                                     <td>
+                                        <?php
+                                        if ($questions['question_type'] == 'multiple_choice') {
+                                            foreach ($options as $option) {
+                                                $quiz_answer = getAllRecords('question_options', 'WHERE question_id = ' . $option['question_id']);
+                                                echo '<div class="form-check">';
+                                                if ($option['option_id'] == $quiz_answer[0]['option_id']) {
+                                                    echo '<input class="form-check-input" type="radio" name="options' . $option['option_id'] . '" id="option' . $option['option_id'] . '" value="' . $option['option_text'] . '" checked disabled>';
+                                                } else {
+                                                    echo '<input class="form-check-input" type="radio" name="options' . $option['option_id'] . '" id="option' . $option['option_id'] . '" value="' . $option['option_text'] . '" disabled>';
+                                                }
+
+                                                echo '<label class="form-check-label" for="option' . $option['option_id'] . '">' . $option['option_text'] . '</label>';
+                                                echo '</div>';
+                                            }
+                                        } elseif ($questions['question_type'] == 'true_false') {
+                                            foreach ($options as $option) {
+                                                $quiz_answer = getAllRecords('question_options', 'WHERE question_id = ' . $option['question_id']);
+                                                echo '<div class="form-check">';
+                                                if ($option['is_correct'] == 1) {
+                                                    echo '<input class="form-check-input" type="radio" name="options' . $option['option_id'] . '" id="option' . $option['option_id'] . '" value="' . $option['option_text'] . '" checked disabled>';
+                                                } else {
+                                                    echo '<input class="form-check-input" type="radio" name="options' . $option['option_id'] . '" id="option' . $option['option_id'] . '" value="' . $option['option_text'] . '" disabled>';
+                                                }
+                                                echo '<label class="form-check-label" for="option' . $option['option_id'] . '">' . $option['option_text'] . '</label>';
+                                                echo '</div>';
+                                            }
+                                        } else {
+                                            $student_answer = getAllRecords('student_answers', 'WHERE question_id = ' . $questions['question_id'] . ' AND student_id = ' . $student_id);
+                                            echo $student_answer[0]['answer_text'];
+                                        }
+                                        ?>
+                                    </td>
+
+                                    <td>
 
                                         <?php
                                         $student_answer = getAllRecords('student_answers', 'WHERE question_id = ' . $questions['question_id'] . ' AND student_id = ' . $student_id);
@@ -102,6 +137,7 @@ $student = getRecord('users', 'user_id = ' . $student_id);
                             } ?>
                             <tr class="table-secondary">
                                 <td><strong>Total Points Earned:</strong></td>
+                                <td></td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -131,7 +167,7 @@ $student = getRecord('users', 'user_id = ' . $student_id);
         </div>
     </div>
 
-    <div class="card-footer bg-white">
+    <div class="card-footer bg-white dont-print">
         <div class="d-flex justify-content-between">
             <button type="button" class="btn btn-outline-secondary" onclick="window.history.back()">
                 <i class="fas fa-arrow-left mr-2"></i>Back
@@ -144,7 +180,18 @@ $student = getRecord('users', 'user_id = ' . $student_id);
                     <i class="fas fa-paper-plane mr-2"></i> Submit Grade
                 </button>
             <?php
-            } ?>
+            } else { ?>
+                <div>
+                    <button type="button" id="printExam" class="btn btn-success px-4">
+                        <i class="fas fa-print mr-2"></i> Print Exam
+                    </button>
+                    <button type="button" id="downloadExcel" class="btn btn-info px-4">
+                        <i class="fas fa-download mr-2"></i> Download Exam
+                    </button>
+                </div>
+
+
+            <?php } ?>
         </div>
     </div>
 </form>
@@ -171,8 +218,8 @@ $student = getRecord('users', 'user_id = ' . $student_id);
 </div>
 
 <script>
-    // Pure JavaScript solution for Bootstrap 5
     document.addEventListener('DOMContentLoaded', () => {
+        // Get the form element
         const form = document.getElementById('gradeForm');
         const modal = new bootstrap.Modal('#submitConfirmationModal');
 
@@ -183,6 +230,90 @@ $student = getRecord('users', 'user_id = ' . $student_id);
 
         document.getElementById('confirmSubmit').addEventListener('click', () => {
             form.submit();
+        });
+
+        // Add Excel download functionality
+        document.getElementById('downloadExcel')?.addEventListener('click', function() {
+            const table = document.getElementById('exam');
+            const rows = table.querySelectorAll('tr');
+            let csvContent = "data:text/csv;charset=utf-8,";
+
+            // Add headers
+            const headers = ["Question", "Type", "Points", "Options", "Correct Answer", "Points Earned"];
+            csvContent += headers.join(",") + "\r\n";
+
+            // Process each data row
+            rows.forEach((row, index) => {
+                // Skip header row and total row (we'll handle it separately)
+                if (index === 0 || row.classList.contains('table-secondary')) return;
+
+                const cells = row.querySelectorAll('td');
+                let rowData = [];
+
+                // Question (column 1)
+                rowData.push(`"${cells[0].textContent.trim().replace(/"/g, '""')}"`);
+
+                // Type (column 2)
+                rowData.push(`"${cells[1].textContent.trim()}"`);
+
+                // Points (column 3)
+                rowData.push(cells[2].textContent.trim());
+
+                // Options (column 4) - format all options with selected marked
+                const optionsCell = cells[3];
+                const options = [];
+                const optionElements = optionsCell.querySelectorAll('.form-check-label');
+                const selectedOption = optionsCell.querySelector('input[type="radio"]:checked')?.nextElementSibling?.textContent.trim();
+
+                optionElements.forEach(option => {
+                    const optionText = option.textContent.trim();
+                    const isSelected = optionText === selectedOption;
+                    options.push(`${isSelected ? '✅ ' : ''}${optionText}`);
+                });
+
+                rowData.push(`"${options.join('\\n')}"`); // Use \n for line breaks in Excel
+
+                // Correct Answer (column 5) - get the correct option
+                const correctAnswerCell = cells[4];
+                const correctOption = correctAnswerCell.querySelector('input[type="radio"]:checked')?.nextElementSibling?.textContent.trim();
+                rowData.push(`"${correctOption || ''}"`);
+
+                // Points Earned (column 6)
+                const pointsCell = cells[5];
+                const pointsInput = pointsCell.querySelector('input[type="number"]');
+                rowData.push(pointsInput ? `${pointsInput.value}/${questions['points']}` : pointsCell.textContent.trim());
+
+                // Add row to CSV content
+                csvContent += rowData.join(",") + "\r\n";
+            });
+
+            // Add total points row
+            const totalRow = table.querySelector('.table-secondary');
+            if (totalRow) {
+                const totalCells = totalRow.querySelectorAll('td');
+                csvContent += `"Total Points Earned:",,,,,"${totalCells[5].textContent.trim()}"\r\n`;
+            }
+
+            // Create download link
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+
+            // Set filename
+            const examTitle = '<?php echo $exam["title"]; ?>';
+            const studentName = '<?php echo $student["first_name"] . "_" . $student["last_name"]; ?>';
+            link.setAttribute("download", `${examTitle}_${studentName}_Results.csv`);
+
+            // Trigger download
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+
+        });
+        document.getElementById('printExam')?.addEventListener('click', function() {
+            //Print page
+            window.print();
         });
     });
 </script>

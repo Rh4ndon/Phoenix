@@ -10,12 +10,14 @@ if (isset($_POST['register'])) {
     $password = $_POST['password'];
     $first_name = $_POST['first_name'];
     $last_name = $_POST['last_name'];
+    $section = $_POST['section'];
 
     $data = [
         'email' => $email,
         'password' => password_hash($password, PASSWORD_BCRYPT),
         'first_name' => $first_name,
         'last_name' => $last_name,
+        'section_id' => $section,
 
     ];
 

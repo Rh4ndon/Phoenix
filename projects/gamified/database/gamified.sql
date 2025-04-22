@@ -80,3 +80,8 @@ CREATE TABLE student_progress (
     FOREIGN KEY (student_id) REFERENCES users(user_id),
     UNIQUE KEY (student_id)
 );
+
+CREATE TABLE sections (
+    section_id INT AUTO_INCREMENT PRIMARY KEY,
+    section_name VARCHAR(100) NOT NULL UNIQUE
+);

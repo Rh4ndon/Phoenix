@@ -25,6 +25,8 @@
                     <form action="../../controllers/update-user.php" method="POST">
                         <input type="hidden" name="id" value="<?php echo $_SESSION['user_id']; ?>">
                         <input type="hidden" name="role" value="<?php echo $_SESSION['is_admin']; ?>">
+
+
                         <div class="mb-3">
                             <label for="first_name" class="form-label">First Name</label>
                             <div class="input-group">
