@@ -44,6 +44,7 @@ $student = getRecord('users', 'user_id = ' . $student_id);
                         if (!empty($records)) {
                             foreach ($records as $questions) {
                                 $options = getAllRecords('question_options', 'WHERE question_id = ' . $questions['question_id']);
+                                $student_answer = getAllRecords('student_answers', 'WHERE question_id = ' . $questions['question_id'] . ' AND student_id = ' . $student_id);
 
                     ?>
                                 <tr>
@@ -52,67 +53,36 @@ $student = getRecord('users', 'user_id = ' . $student_id);
                                     <td><?php echo $questions['points']; ?></td>
                                     <td>
                                         <?php
-                                        if ($questions['question_type'] == 'multiple_choice') {
+                                        if ($questions['question_type'] == 'multiple_choice' || $questions['question_type'] == 'true_false') {
                                             foreach ($options as $option) {
-                                                $student_answer = getAllRecords('student_answers', 'WHERE question_id = ' . $option['question_id'] . ' AND student_id = ' . $student_id);
                                                 echo '<div class="form-check">';
                                                 if ($option['option_id'] == $student_answer[0]['option_id']) {
-                                                    echo '<input class="form-check-input" type="radio" name="options' . $option['option_id'] . '" id="option' . $option['option_id'] . '" value="' . $option['option_text'] . '" checked disabled>';
+                                                    echo '<input class="form-check-input" type="radio" checked disabled>';
+                                                    echo '<label class="form-check-label">' . $option['option_text'] . '</label>';
                                                 } else {
-                                                    echo '<input class="form-check-input" type="radio" name="options' . $option['option_id'] . '" id="option' . $option['option_id'] . '" value="' . $option['option_text'] . '" disabled>';
+                                                    echo '<input class="form-check-input" type="radio" disabled>';
+                                                    echo '<label class="form-check-label text-muted">' . $option['option_text'] . '</label>';
                                                 }
-
-                                                echo '<label class="form-check-label" for="option' . $option['option_id'] . '">' . $option['option_text'] . '</label>';
-                                                echo '</div>';
-                                            }
-                                        } elseif ($questions['question_type'] == 'true_false') {
-                                            foreach ($options as $option) {
-                                                $student_answer = getAllRecords('student_answers', 'WHERE question_id = ' . $option['question_id'] . ' AND student_id = ' . $student_id);
-                                                echo '<div class="form-check">';
-                                                if ($option['option_id'] == $student_answer[0]['option_id']) {
-                                                    echo '<input class="form-check-input" type="radio" name="options' . $option['option_id'] . '" id="option' . $option['option_id'] . '" value="' . $option['option_text'] . '" checked disabled>';
-                                                } else {
-                                                    echo '<input class="form-check-input" type="radio" name="options' . $option['option_id'] . '" id="option' . $option['option_id'] . '" value="' . $option['option_text'] . '" disabled>';
-                                                }
-                                                echo '<label class="form-check-label" for="option' . $option['option_id'] . '">' . $option['option_text'] . '</label>';
                                                 echo '</div>';
                                             }
                                         } else {
-                                            $student_answer = getAllRecords('student_answers', 'WHERE question_id = ' . $questions['question_id'] . ' AND student_id = ' . $student_id);
                                             echo $student_answer[0]['answer_text'];
                                         }
                                         ?>
                                     </td>
                                     <td>
                                         <?php
-                                        if ($questions['question_type'] == 'multiple_choice') {
+                                        if ($questions['question_type'] == 'multiple_choice' || $questions['question_type'] == 'true_false') {
                                             foreach ($options as $option) {
-                                                $quiz_answer = getAllRecords('question_options', 'WHERE question_id = ' . $option['question_id']);
-                                                echo '<div class="form-check">';
-                                                if ($option['option_id'] == $quiz_answer[0]['option_id']) {
-                                                    echo '<input class="form-check-input" type="radio" name="options' . $option['option_id'] . '" id="option' . $option['option_id'] . '" value="' . $option['option_text'] . '" checked disabled>';
-                                                } else {
-                                                    echo '<input class="form-check-input" type="radio" name="options' . $option['option_id'] . '" id="option' . $option['option_id'] . '" value="' . $option['option_text'] . '" disabled>';
-                                                }
-
-                                                echo '<label class="form-check-label" for="option' . $option['option_id'] . '">' . $option['option_text'] . '</label>';
-                                                echo '</div>';
-                                            }
-                                        } elseif ($questions['question_type'] == 'true_false') {
-                                            foreach ($options as $option) {
-                                                $quiz_answer = getAllRecords('question_options', 'WHERE question_id = ' . $option['question_id']);
-                                                echo '<div class="form-check">';
                                                 if ($option['is_correct'] == 1) {
-                                                    echo '<input class="form-check-input" type="radio" name="options' . $option['option_id'] . '" id="option' . $option['option_id'] . '" value="' . $option['option_text'] . '" checked disabled>';
-                                                } else {
-                                                    echo '<input class="form-check-input" type="radio" name="options' . $option['option_id'] . '" id="option' . $option['option_id'] . '" value="' . $option['option_text'] . '" disabled>';
+                                                    echo '<div class="form-check">';
+                                                    echo '<input class="form-check-input" type="radio" checked disabled>';
+                                                    echo '<label class="form-check-label font-weight-bold">' . $option['option_text'] . '</label>';
+                                                    echo '</div>';
                                                 }
-                                                echo '<label class="form-check-label" for="option' . $option['option_id'] . '">' . $option['option_text'] . '</label>';
-                                                echo '</div>';
                                             }
                                         } else {
-                                            $student_answer = getAllRecords('student_answers', 'WHERE question_id = ' . $questions['question_id'] . ' AND student_id = ' . $student_id);
-                                            echo $student_answer[0]['answer_text'];
+                                            echo '<em>Manual grading required</em>';
                                         }
                                         ?>
                                     </td>
