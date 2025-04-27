@@ -36,7 +36,7 @@ if (isset($_GET['export_excel'])) {
         }
 
         // Generate filename
-        $filename = "Results_" . $section_records[0]['section_name'] . "_" . $quiz['title'] . "_" . date('Y-m-d') . ".xlsx";
+        $filename = "Results_" . $section_records[0]['section_name'] . "_" . $quiz['title'] . "_" . date('Y-m-d') . ".csv";
 
         // For actual XLSX file, we'll use a simple XML structure (Excel 2003+ compatible)
         $xml = '<?xml version="1.0"?>
