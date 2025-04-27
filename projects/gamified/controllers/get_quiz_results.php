@@ -36,7 +36,7 @@ if (isset($_GET['export_excel'])) {
 
         // Add student data
         foreach ($students as $student) {
-            $answers = getAllRecords('student_answers', "WHERE quiz_id = {$quiz_id} AND student_id = {$student['user_id']}");
+            $answers = getAllRecords('student_answers', "WHERE quiz_id = {$quiz_id} AND student_id = {$student['user_id']} AND is_graded = '1'");
             $total_points = array_sum(array_column($answers, 'points_earned'));
 
             echo $student['first_name'] . " " . $student['last_name'] . "\t" .
