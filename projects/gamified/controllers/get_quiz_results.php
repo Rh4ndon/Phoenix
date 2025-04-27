@@ -14,10 +14,7 @@ if (isset($_GET['export_excel'])) {
         // Get all required data
         $quiz = getRecord('quizzes', $quiz_id);
         $students = getAllRecords('users', "WHERE section_id = {$section_id} AND is_admin = '0'");
-        $questions = getAllRecords('questions', 'WHERE quiz_id = ' . $quiz_id);
 
-        // Calculate total possible points
-        $total_quiz_points = array_sum(array_column($questions, 'points'));
 
         // Generate filename
         $filename = "Results_" . $section_records[0]['section_name'] . "_" . $quiz['title'] . "_" . date('Y-m-d') . ".xls";
@@ -38,9 +35,9 @@ if (isset($_GET['export_excel'])) {
         foreach ($students as $student) {
             $answers = getAllRecords('student_answers', "WHERE quiz_id = {$quiz_id} AND student_id = {$student['user_id']} AND is_graded = '1'");
             $total_points = array_sum(array_column($answers, 'points_earned'));
-
+            $total_points = number_format($total_points, 2);
             echo $student['first_name'] . " " . $student['last_name'] . "\t" .
-                $total_points . "/" . $total_quiz_points . "\n";
+                $total_points . "\n";
         }
 
         exit;
