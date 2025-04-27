@@ -16,7 +16,8 @@ if (isset($_GET['export_excel'])) {
         $students = getAllRecords('users', "WHERE section_id = {$section_id} AND is_admin = '0'");
         $questions = getAllRecords('questions', 'WHERE quiz_id = ' . $quiz_id);
 
-
+        // Calculate total possible points
+        $total_quiz_points = array_sum(array_column($questions, 'points'));
 
         // Generate filename
         $filename = "Results_" . $section_records[0]['section_name'] . "_" . $quiz['title'] . "_" . date('Y-m-d') . ".xls";
@@ -34,20 +35,12 @@ if (isset($_GET['export_excel'])) {
         echo "Student Name\tGrade\n";
 
         // Add student data
-
         foreach ($students as $student) {
             $answers = getAllRecords('student_answers', "WHERE quiz_id = {$quiz_id} AND student_id = {$student['user_id']}");
-            $total_points = 0;
-            foreach ($answers as $answer) {
-                $question = getRecord('questions', $answer['question_id']);
-                if ($question) {
-                    $total_points += $question['points'] ?? 0;
-                }
-            }
-            $total_points += $answers[0]['points_earned'] ?? 0;
+            $total_points = array_sum(array_column($answers, 'points_earned'));
 
             echo $student['first_name'] . " " . $student['last_name'] . "\t" .
-                $total_points . "\n";
+                $total_points . "/" . $total_quiz_points . "\n";
         }
 
         exit;
