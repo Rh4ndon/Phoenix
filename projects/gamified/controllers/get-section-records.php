@@ -31,9 +31,22 @@ $section_records = getAllRecords('sections', 'WHERE section_id = ' . $section_id
                             $records = getAllRecords('quizzes');
                             if (!empty($records)) {
                                 foreach ($records as $record) {
-                                    $student_answers = getAllRecords('student_answers', "WHERE quiz_id = {$record['quiz_id']} AND is_graded = '1' GROUP BY student_id");
+                                    // Count distinct students who have any graded answers
+
+                                    $student_answers = getAllRecords(
+                                        'student_answers sa JOIN users u ON sa.student_id = u.user_id',
+                                        "WHERE sa.quiz_id = {$record['quiz_id']} 
+                                     AND sa.is_graded = '1' 
+                                     AND u.section_id = {$section_id}
+                                     AND u.is_admin = '0'
+                                     GROUP BY sa.student_id"
+                                    );
                                     $student_count = count($student_answers);
-                                    $student_section_count = count(getAllRecords('users', "WHERE section_id = {$section_id} AND is_admin = '0'"));
+
+                                    $student_section_count = count(getAllRecords(
+                                        'users',
+                                        "WHERE section_id = {$section_id} AND is_admin = '0'"
+                                    ));
                         ?>
                                     <tr class="exam-card">
                                         <td><?php echo $record['title']; ?></td>
