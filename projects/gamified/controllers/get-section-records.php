@@ -31,7 +31,7 @@ $section_records = getAllRecords('sections', 'WHERE section_id = ' . $section_id
                             $records = getAllRecords('quizzes');
                             if (!empty($records)) {
                                 foreach ($records as $record) {
-                                    $student_answers = getAllRecords('student_answers', "WHERE quiz_id = {$record['quiz_id']} GROUP BY student_id");
+                                    $student_answers = getAllRecords('student_answers', "WHERE quiz_id = {$record['quiz_id']} AND is_graded = '1' GROUP BY student_id");
                                     $student_count = count($student_answers);
                                     $student_section_count = count(getAllRecords('users', "WHERE section_id = {$section_id} AND is_admin = '0'"));
                         ?>
