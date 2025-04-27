@@ -20,7 +20,7 @@
             <a href="teacher-exams.php" class="<?php echo in_array(basename($_SERVER['PHP_SELF']), ['teacher-exams.php', 'teacher-edit-exam.php', 'teacher-view-exam.php', 'teacher-edit-question.php', 'teacher-edit-question.php']) ? 'active' : ''; ?>">
                 <i class="fas fa-box"></i> Exams
             </a>
-            <a href="teacher-sections.php" class="<?php echo in_array(basename($_SERVER['PHP_SELF']), ['teacher-sections.php']) ? 'active' : ''; ?>">
+            <a href="teacher-sections.php" class="<?php echo in_array(basename($_SERVER['PHP_SELF']), ['teacher-sections.php', 'teacher-edit-section.php', 'teacher-section-records.php']) ? 'active' : ''; ?>">
                 <i class="fas fa-book"></i> Sections
             </a>
             <a href="../../controllers/logout.php">

@@ -14,7 +14,8 @@ try {
 
                 <td>
 
-
+                    <!-- View Records -->
+                    <a href="teacher-section-records.php?id=<?php echo $section['section_id']; ?>" class="btn btn-sm btn-outline-primary">View Records</a>
                     <a href="teacher-edit-section.php?id=<?php echo $section['section_id']; ?>" class="btn btn-sm btn-outline-primary">Edit</a>
 
 
