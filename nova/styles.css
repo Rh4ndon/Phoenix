@@ -1,0 +1,234 @@
+body {
+    background-color: #133052;
+    overflow-x: hidden;
+}
+
+.main-container {
+    padding: 30px;
+    height: auto;
+}
+
+@media (min-width: 768px) {
+    .main-container {
+        padding: 50px;
+        height: 100vh;
+    }
+}
+
+.card {
+    background-color: #495057;
+    color: white;
+}
+.box {
+    background-color: #1a3c63;
+    color: white;
+    padding: 20px;
+    width: 100%;
+    margin-left: 0;
+    margin-top: 5px;
+    height: auto;
+    z-index: -5;
+    position: relative;
+    overflow: hidden;
+}
+
+@media (min-width: 768px) {
+    .box {
+        width: 110%;
+        margin-left: -50px;
+        height: 61%;
+    }
+}
+
+.small-box {
+    position: absolute;
+    background-image: linear-gradient(to bottom, #92a5b9, #7f92a8);
+    color: white;
+    padding: 20px;
+    width: 3%;
+    margin-left: -8px;
+    margin-top: 10px;
+    height: 580px;
+    display: none;
+}
+
+@media (min-width: 992px) {
+    .small-box {
+        display: block;
+    }
+}
+
+.outline-logo {
+    position: relative;
+    margin-top: 15px;
+    z-index: 10;
+    height: 60px;
+    background-color: #4b79a6;
+    padding: 5px 10px 5px 10px;
+    border-radius: 8px;
+    border-color: #133052;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.outline-logo:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(75, 121, 166, 0.7);
+}
+
+.outline-title {
+    position: relative;
+    margin-top: -48px;
+    margin-left: 60px;
+    z-index: 9;
+    background-color: #4b79a6;
+    padding: 5px 10px 5px 10px;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+}
+
+.outline-text {
+    position: relative;
+    margin-top: -5px;
+    margin-left: 60px;
+    z-index: 9;
+    transition: all 0.3s ease;
+    transform: translateX(-20px);
+}
+
+.virtual:hover .outline-text {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.virtual:hover .outline-title {
+    background-color: #3a5f85;
+}
+
+.working-image {
+    position: relative;
+    margin-top: 20px;
+    z-index: 1;
+    height: auto;
+    width: 100%;
+    border-radius: 0px 0px 100px 100px;
+    transition: all 0.5s ease;
+    transform: translateY(20px);
+    opacity: 0;
+}
+
+@media (min-width: 768px) {
+    .working-image {
+        margin-top: -60px;
+        height: 30%;
+        border-radius: 0px 0px 300px 300px;
+    }
+}
+
+.gradient-box {
+    background-image: linear-gradient(to bottom right, #1b3753, #8ed5ec);
+    color: white;
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+    transform: scale(0.98);
+    opacity: 0;
+}
+
+.gradient-box:hover {
+    transform: scale(1.01);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.gradient-title {
+    background-color: #1b3753;
+    padding: 10px;
+    border-radius: 30px;
+    width: 100%;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+@media (min-width: 768px) {
+    .gradient-title {
+        width: 70%;
+    }
+}
+
+.gradient-box:hover .gradient-title {
+    background-color: #122a44;
+}
+
+.contact {
+    position: relative;
+    margin-top: 20px;
+}
+
+@media (min-width: 768px) {
+    .contact {
+        margin-top: -50px;
+    }
+}
+
+/* Animation classes */
+.animate-fade-in {
+    animation: fadeIn 1s ease forwards;
+}
+
+.animate-slide-up {
+    animation: slideUp 0.8s ease forwards;
+}
+
+.animate-delay-1 {
+    animation-delay: 0.2s;
+}
+
+.animate-delay-2 {
+    animation-delay: 0.4s;
+}
+
+.animate-delay-3 {
+    animation-delay: 0.6s;
+}
+
+.animate-delay-4 {
+    animation-delay: 0.8s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { 
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to { 
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Pulse animation for logo */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.logo img {
+    animation: pulse 2s infinite;
+}
+
+/* Floating animation for map */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+.floating {
+    animation: float 3s ease-in-out infinite;
+}
