@@ -128,7 +128,7 @@ body {
     background-image: linear-gradient(to bottom right, #1b3753, #8ed5ec);
     color: white;
     border-radius: 20px;
-    padding: 20px;
+    padding: 10px 30px 10px 30px;
     margin-bottom: 20px;
     transition: all 0.3s ease;
     transform: scale(0.98);
