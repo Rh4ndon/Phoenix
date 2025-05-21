@@ -3,125 +3,637 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NOVA Virtual Solutions</title>
+    <title>Nova Virtual Solution - Professional Virtual Assistance</title>
+    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Animate.css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --primary-color: #1d9ffd;
+            --secondary-color: #403ff6;
+        }
+        
+        .bg-primary-custom {
+            background-color: var(--primary-color);
+        }
+        
+        .bg-secondary-custom {
+            background-color: var(--secondary-color);
+        }
+        
+        .text-primary-custom {
+            color: var(--primary-color);
+        }
+        
+        .text-secondary-custom {
+            color: var(--secondary-color);
+        }
+        
+        .btn-primary-custom {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-primary-custom:hover {
+            background-color: #0d8ee6;
+            border-color: #0d8ee6;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary-custom {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .btn-secondary-custom:hover {
+            background-color: #302fe6;
+            border-color: #302fe6;
+            transform: translateY(-2px);
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(255,255,255,0.05)" d="M0,0 L100,0 L100,100 Q50,80 0,100 Z"></path></svg>');
+            background-size: 100% 50%;
+            background-repeat: no-repeat;
+            background-position: bottom;
+            animation: waveAnimation 10s linear infinite;
+        }
+        
+        @keyframes waveAnimation {
+            0% { background-position-x: 0; }
+            100% { background-position-x: 100%; }
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+            transition: all 0.3s ease;
+        }
+        
+        .feature-icon:hover {
+            transform: scale(1.2) rotate(10deg);
+        }
+        
+        .service-card {
+            transition: all 0.4s ease;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .service-card .card-header {
+            background-color: var(--primary-color);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover .card-header {
+            background-color: var(--secondary-color);
+        }
+        
+        .testimonial-card {
+            border-left: 4px solid var(--secondary-color);
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        footer {
+            background-color: #2c3e50;
+            color: white;
+        }
+
+        .contact-method {
+            transition: all 0.4s ease;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .contact-method:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .contact-method:hover .contact-icon {
+            transform: scale(1.2);
+            color: var(--secondary-color);
+        }
+        
+        .logo-img {
+            height: 40px;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-brand:hover .logo-img {
+            transform: rotate(10deg);
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .typing-text {
+            border-right: 3px solid white;
+            height: 1.5em;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typing 3s steps(30) 1s 1 normal both, blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: white }
+        }
+    </style>
 </head>
 <body>
-    <div class="main-container">
-        <div class="row w-100 h-100">
-            
-            <div class="col-md-4">
-                <div class="logo animate__animated animate__fadeIn">
-                    <img src="images/nova-logo.png" alt="NOVA Virtual Solutions Logo" class="img-fluid" style="width: 60%;">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
+                <img src="images/nova-logo.png" alt="Nova Virtual Solution" class="logo-img me-2">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#testimonials">Testimonials</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+                <a href="#contact" class="btn btn-primary-custom ms-lg-3 animate__animated animate__pulse animate__infinite">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container position-relative">
+            <div class="row align-items-center">
+                <div class="col-lg-6 animate__animated animate__fadeInLeft">
+                    <h1 class="display-4 fw-bold mb-4">Bridging talents, connecting worlds!</h1>
+                    <div class="typing-text mb-1">
+                        <p class="lead">NOVA Virtual Solutions connects businesses with top-tier remote 
+                            </p>
+                    </div>
+                    <div class="typing-text mb-4">
+                        <p class="lead">
+                            talent, ensuring seamless growth and global service delivery.</p>
+                    </div>
+                    <div class="d-flex gap-3">
+                        <a href="#contact" class="btn btn-light btn-lg pulse">Get Started</a>
+                        <a href="#services" class="btn btn-outline-light btn-lg">Our Services</a>
+                    </div>
                 </div>
-                <h2 class="display-5 fw-bold text-white animate__animated animate__fadeIn animate__delay-1s">Bridging Talent, Connecting Worlds.</h2>
-                <p class="text-light fs-5 animate__animated animate__fadeIn animate__delay-1s">NOVA Virtual Solutions connects businesses with top-tier remote talent, ensuring seamless growth and global service delivery.</p>
-                <div class="box animate__animated animate__fadeIn animate__delay-2s">
-                    <div class="row d-flex">
-                        
-                        <div class="container">
-                            <div class="virtual">
-                                <img class="img-fluid outline-logo" src="images/virtual-assistant.png" alt="">
-                                <p class="fs-5 outline-title">Virtual Assistant</p>
-                                <p class="outline-text">Remote administrative professionals supporting executives, entrepreneurs, and teams.</p>
-                            </div>
-                            <div class="virtual">
-                                <img class="img-fluid outline-logo" src="images/cold-caller.png" alt="">
-                                <p class="fs-5 outline-title">Cold Caller</p>
-                                <p class="outline-text">Skilled outbound calling agents who engage prospects, qualify leads, and drive conversions.</p>
-                            </div>
-                            <div class="virtual">
-                                <img class="img-fluid outline-logo" src="images/customer-support.png" alt="">
-                                <p class="fs-5 outline-title">Customer Support Agents</p>
-                                <p class="outline-text">Real-time customer service representatives managing live chat and online inquiries 24/7.
-                                </p>
-                            </div>
-                            <div class="virtual">
-                                <img class="img-fluid outline-logo" src="images/social-media-manager.png" alt="">
-                                <p class="fs-5 outline-title">Social Media Manager</p>
-                                <p class="outline-text">Digital marketing professionals managing brand presence and engagement across social platforms.</p>
-                            </div>
-                         
+                <div class="col-lg-6 d-none d-lg-block animate__animated animate__fadeInRight">
+                    <img src="images/service.webp" alt="Virtual Assistant" class="img-fluid rounded shadow floating">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col animate__animated animate__fadeInUp">
+                    <h2 class="fw-bold">Why Choose Nova Virtual Solution</h2>
+                    <p class="text-muted">We provide top-notch virtual assistance tailored to your needs</p>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4 animate__animated animate__fadeInUp" data-wow-delay="0.1s">
+                    <div class="text-center p-4 h-100">
+                        <div class="feature-icon">
+                            <i class="fas fa-clock"></i>
                         </div>
-                        <div class="small-box"></div>
+                        <h4>Save Time</h4>
+                        <p class="text-muted">Focus on what matters most while we handle the rest. Get back hours in your day.</p>
                     </div>
+                </div>
+                <div class="col-md-4 animate__animated animate__fadeInUp" data-wow-delay="0.2s">
+                    <div class="text-center p-4 h-100">
+                        <div class="feature-icon">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <h4>Cost Effective</h4>
+                        <p class="text-muted">No overhead costs. Pay only for the services you need when you need them.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 animate__animated animate__fadeInUp" data-wow-delay="0.3s">
+                    <div class="text-center p-4 h-100">
+                        <div class="feature-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <h4>Professional Team</h4>
+                        <p class="text-muted">Our assistants are highly trained professionals with diverse skill sets.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <!-- Services Section -->
+<section id="services" class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col animate__animated animate__fadeInUp">
+                <h2 class="fw-bold">What We Offer</h2>
+                <p class="text-muted">Comprehensive virtual assistance for all your business needs</p>
+            </div>
+        </div>
+        <div class="row g-4">
+            <!-- Virtual Assistant Card -->
+            <div class="col-md-6 col-lg-3 animate__animated animate__fadeInLeft">
+                <div class="card service-card h-100">
+                    <div class="card-header py-3 d-flex align-items-center">
+                        <i class="fas fa-user-clock me-2"></i>
+                        <h5 class="mb-0">Virtual Assistant</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-unstyled mb-0">
+                            <li class="mb-2"><i class="fas fa-check-circle text-primary-custom me-2"></i> Calendar & email management</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-primary-custom me-2"></i> Travel planning & coordination</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-primary-custom me-2"></i> Data entry & organization</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-primary-custom me-2"></i> Task and project coordination</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-primary-custom me-2"></i> CRM management</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-primary-custom me-2"></i> Social media support</li>
+                            <li><i class="fas fa-check-circle text-primary-custom me-2"></i> Personal assistant service</li>
+                        </ul>
+                    </div>
+                    
                 </div>
             </div>
             
-            <div class="col-md-4">
-                <img src="images/service.webp" alt="Person working on computer" class="working-image img-fluid animate-fade-in animate-delay-1">
-                <center style="margin-top: 40px;">
-                    <p class="fs-2 text-white fw-bold animate__animated animate__fadeIn">What we offer?</p>
-                </center>
-                <div class="gradient-box animate-slide-up animate-delay-2">
-                    <center><div class="gradient-title fw-bold fs-4">Virtual Assistant</div></center>
-                    <div class="gradient-text align-self-start">
-                        <li class="fs-6">Calendar & email management</li>
-                        <li class="fs-6">Travel planning & itinerary coordination</li>
-                        <li class="fs-6">Data entry & document organization</li>
-                        <li class="fs-6">Task and project coordination</li>
-                        <li class="fs-6">CRM management</li>
-                        <li class="fs-6">Social media support</li>
-                        <li class="fs-6">Lead generation</li>
-                        <li class="fs-6">Personal assistant service (as needed)</li>
+            <!-- Cold Caller Card -->
+            <div class="col-md-6 col-lg-3 animate__animated animate__fadeInUp">
+                <div class="card service-card h-100">
+                    <div class="card-header py-3 d-flex align-items-center">
+                        <i class="fas fa-phone-volume me-2"></i>
+                        <h5 class="mb-0">Cold Caller</h5>
                     </div>
-                </div>
-                <div class="gradient-box animate-slide-up animate-delay-3">
-                    <center><div class="gradient-title fw-bold fs-4">Cold Caller</div></center>
-                    <div class="gradient-text align-self-start">
-                        <li class="fs-6">Outbound sales calls to potential clients</li>
-                        <li class="fs-6">Lead qualification and appointment setting</li>
-                        <li class="fs-6">Cold calling scripts & pitch refinement</li>
-                        <li class="fs-6">CRM updates and call tracking</li>
-                        <li class="fs-6">Follow-up call management</li>
-                        <li class="fs-6">Handling objections and basic inquiries</li>
-                        <li class="fs-6">B2B and B2C outreach</li>
+                    <div class="card-body">
+                        <ul class="list-unstyled mb-0">
+                            <li class="mb-2"><i class="fas fa-check-circle text-primary-custom me-2"></i> Outbound sales calls</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-primary-custom me-2"></i> Lead qualification</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-primary-custom me-2"></i> Appointment setting</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-primary-custom me-2"></i> Script refinement</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-primary-custom me-2"></i> CRM updates</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-primary-custom me-2"></i> Follow-up management</li>
+                            <li><i class="fas fa-check-circle text-primary-custom me-2"></i> B2B/B2C outreach</li>
+                        </ul>
                     </div>
+                    
                 </div>
-                
             </div>
-            <div class="col-md-4">
-                <div class="gradient-box animate-slide-up animate-delay-1">
-                    <center><div class="gradient-title fw-bold fs-4">Customer Support Agents</div></center>
-                    <div class="gradient-text align-self-start">
-                        <li class="fs-6">Live chat support on websites or platforms</li>
-                        <li class="fs-6">Responding to product/service questions</li>
-                        <li class="fs-6">Troubleshooting basic customer issues</li>
-                        <li class="fs-6">Order processing and tracking assistance</li>
-                        <li class="fs-6">CRM and ticketing system updates</li>
-                        <li class="fs-6">Escalation to relevant departments</li>
-                        <li class="fs-6">24/7 or specific hours availability based on client needs</li>
+            
+            <!-- Customer Support Card -->
+            <div class="col-md-6 col-lg-3 animate__animated animate__fadeInUp">
+                <div class="card service-card h-100">
+                    <div class="card-header py-3 d-flex align-items-center">
+                        <i class="fas fa-headset me-2"></i>
+                        <h5 class="mb-0">Customer Support</h5>
                     </div>
-                </div>
-
-                <div class="gradient-box animate-slide-up animate-delay-2">
-                    <center><div class="gradient-title fw-bold fs-4">Social Media Manager</div></center>
-                    <div class="gradient-text align-self-start">
-                        <li class="fs-6">Develop and execute social media strategies</li>
-                        <li class="fs-6">Create and schedule engaging content</li>
-                        <li class="fs-6">Manage and grow online communities</li>
-                        <li class="fs-6">Monitor engagement and respond to messages/comments</li>
-                        <li class="fs-6">Design visuals and coordinate with creatives</li>
-                        <li class="fs-6">Analyze performance metrics and generate reports</li>
-                        <li class="fs-6">Run paid ad campaigns (if applicable)</li>
-                        <li class="fs-6">Trend research and hashtag optimization</li>
-                        <li class="fs-6">Content calendar planning and campaign coordination</li>
+                    <div class="card-body">
+                        <ul class="list-unstyled mb-0">
+                            <li class="mb-2"><i class="fas fa-check-circle text-primary-custom me-2"></i> Live chat support</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-primary-custom me-2"></i> Product/service questions</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-primary-custom me-2"></i> Troubleshooting</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-primary-custom me-2"></i> Order processing</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-primary-custom me-2"></i> Ticketing system updates</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-primary-custom me-2"></i> Issue escalation</li>
+                            <li><i class="fas fa-check-circle text-primary-custom me-2"></i> 24/7 availability</li>
+                        </ul>
                     </div>
+                    
                 </div>
-
-                <img src="images/map.png" alt="world map" class="img-fluid floating" style="margin-top: 20px;">
-                <div class="text-center contact animate__animated animate__fadeIn animate__delay-3s">
-                    <p class="fs-2 fw-bold text-white">Contact Us:</p>
-                    <p class="fs-5 text-white" style="margin-top: -10px;">info@novadgsolutions.com</p>
+            </div>
+            
+            <!-- Social Media Manager Card -->
+            <div class="col-md-6 col-lg-3 animate__animated animate__fadeInRight">
+                <div class="card service-card h-100">
+                    <div class="card-header py-3 d-flex align-items-center">
+                        <i class="fas fa-share me-2"></i>
+                        <h5 class="mb-0">Social Media Manager</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-unstyled mb-0">
+                            <li class="mb-2"><i class="fas fa-check-circle text-primary-custom me-2"></i> Strategy development</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-primary-custom me-2"></i> Content creation</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-primary-custom me-2"></i> Community management</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-primary-custom me-2"></i> Engagement monitoring</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-primary-custom me-2"></i> Visual design coordination</li>
+                            <li class="mb-2"><i class="fas fa-check-circle text-primary-custom me-2"></i> Performance analytics</li>
+                            <li><i class="fas fa-check-circle text-primary-custom me-2"></i> Campaign management</li>
+                        </ul>
+                    </div>
                     
                 </div>
             </div>
         </div>
-        
     </div>
+</section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0 animate__animated animate__fadeInLeft">
+                    <img src="images/map.png" alt="About Nova Virtual Solution" class="img-fluid rounded shadow">
+                </div>
+                <div class="col-lg-6 animate__animated animate__fadeInRight">
+                    <h2 class="fw-bold mb-4">About Nova Virtual Solution</h2>
+                    <p class="lead">We're dedicated to helping businesses thrive by providing exceptional virtual assistance services.</p>
+                    <p>Founded in 2023, Nova Virtual Solution has quickly become a trusted partner for entrepreneurs and businesses looking to streamline their operations. Our team of skilled professionals is committed to delivering high-quality support tailored to your specific needs.</p>
+                    <p>We believe that every business deserves access to top-tier administrative support without the overhead of full-time employees. Our flexible solutions allow you to scale up or down as your needs change.</p>
+                    <a href="#contact" class="btn btn-primary-custom mt-3 pulse">Contact Us Today</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-5 bg-light">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col animate__animated animate__fadeInUp">
+                    <h2 class="fw-bold">What Our Clients Say</h2>
+                    <p class="text-muted">Don't just take our word for it</p>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4 animate__animated animate__fadeInLeft">
+                    <div class="card h-100 p-4 testimonial-card">
+                        <div class="card-body">
+                            <div class="mb-3 text-warning">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="fst-italic mb-4">"Nova Virtual Solution has been a game-changer for my small business. Their administrative support has saved me at least 10 hours a week!"</p>
+                            <div class="d-flex align-items-center">
+                               
+                                <div>
+                                    <h6 class="mb-0">Kishan P.</h6>
+                                    <small class="text-muted">CEO, Creative Solutions</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 animate__animated animate__fadeInUp">
+                    <div class="card h-100 p-4 testimonial-card">
+                        <div class="card-body">
+                            <div class="mb-3 text-warning">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="fst-italic mb-4">"The marketing support team is phenomenal. They've helped grow our social media presence by 300% in just 3 months."</p>
+                            <div class="d-flex align-items-center">
+                               
+                                <div>
+                                    <h6 class="mb-0">Gerry K.</h6>
+                                    <small class="text-muted">Founder, TechStart</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 animate__animated animate__fadeInRight">
+                    <div class="card h-100 p-4 testimonial-card">
+                        <div class="card-body">
+                            <div class="mb-3 text-warning">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <p class="fst-italic mb-4">"As a solopreneur, having Nova handle my customer support has allowed me to focus on product development. Highly recommended!"</p>
+                            <div class="d-flex align-items-center">
+                                <
+                                <div>
+                                    <h6 class="mb-0">Orion M.</h6>
+                                    <small class="text-muted">Owner, Crafty Creations</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-5 bg-primary-custom text-white">
+        <div class="container text-center animate__animated animate__zoomIn">
+            <h2 class="fw-bold mb-4">Ready to Transform Your Business?</h2>
+            <p class="lead mb-5">Get started with a professional virtual assistant today and experience the difference.</p>
+            <a href="#contact" class="btn btn-light btn-lg px-5 pulse">Contact Us Now</a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5">
+        <div class="container">
+            <div class="row text-center mb-5 animate__animated animate__fadeInUp">
+                <div class="col">
+                    <h2 class="fw-bold">Get In Touch</h2>
+                    <p class="lead">We'd love to hear from you! Reach out via email or Facebook Messenger.</p>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-5 mb-4 mb-md-0 animate__animated animate__fadeInLeft">
+                    <div class="contact-method h-100">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h4>Email Us</h4>
+                        <p>For inquiries and service information</p>
+                        <a href="mailto:contact@novavirtualsolution.com" class="btn btn-primary-custom mt-3">
+                            <i class="fas fa-paper-plane me-2"></i> Send Email
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-5 animate__animated animate__fadeInRight">
+                    <div class="contact-method h-100">
+                        <div class="contact-icon">
+                            <i class="fab fa-facebook-messenger"></i>
+                        </div>
+                        <h4>Message Us on Facebook</h4>
+                        <p>For quick responses and chat</p>
+                        <a href="https://m.me/yourfacebookpage" target="_blank" class="btn btn-primary-custom mt-3" style="background-color: #006AFF;">
+                            <i class="fab fa-facebook-messenger me-2"></i> Message Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5 animate__animated animate__fadeInUp">
+                <div class="col text-center">
+                    <h5 class="mb-3">Or give us a call</h5>
+                    <p class="h4"><i class="fas fa-phone-alt text-primary-custom me-2"></i> +1 (555) 123-4567</p>
+                    <p class="text-muted">Monday - Friday: 9am - 6pm EST</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0 animate__animated animate__fadeInUp">
+                    <h5 class="text-white mb-4">Nova Virtual Solution</h5>
+                    <p>Bridging talents, connecting worlds!</p>
+                    <div class="mt-4">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4 mb-md-0 animate__animated animate__fadeInUp" data-wow-delay="0.1s">
+                    <h5 class="text-white mb-4">Services</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#services" class="text-white-50 text-decoration-none">Administrative</a></li>
+                        <li class="mb-2"><a href="#services" class="text-white-50 text-decoration-none">Marketing</a></li>
+                        <li class="mb-2"><a href="#services" class="text-white-50 text-decoration-none">Business Support</a></li>
+                        <li><a href="#services" class="text-white-50 text-decoration-none">Custom Packages</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4 mb-md-0 animate__animated animate__fadeInUp" data-wow-delay="0.2s">
+                    <h5 class="text-white mb-4">Company</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#about" class="text-white-50 text-decoration-none">About Us</a></li>
+                        <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Our Team</a></li>
+                        <li class="mb-2"><a href="#testimonials" class="text-white-50 text-decoration-none">Testimonials</a></li>
+                        <li><a href="#contact" class="text-white-50 text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 animate__animated animate__fadeInUp" data-wow-delay="0.3s">
+                    <h5 class="text-white mb-4">Location</h5>
+                    <p><i class="fas fa-map-marker-alt text-primary-custom me-2"></i> 123 Business Ave, Suite 100<br>New York, NY 10001</p>
+                </div>
+            </div>
+            <hr class="my-4 bg-secondary">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="small text-white-50 mb-0">&copy; 2023 Nova Virtual Solution. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="small text-white-50 mb-0">
+                        <a href="#" class="text-white-50 text-decoration-none">Privacy Policy</a> | 
+                        <a href="#" class="text-white-50 text-decoration-none">Terms of Service</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="scripts.js"></script>
+    <script>
+        // Simple script to trigger animations when elements come into view
+        document.addEventListener('DOMContentLoaded', function() {
+            const animateElements = document.querySelectorAll('.animate__animated');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const animation = entry.target.getAttribute('class').match(/animate__(\w+)/)[1];
+                        entry.target.classList.add(`animate__${animation}`);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            animateElements.forEach(element => {
+                observer.observe(element);
+            });
+            
+            // Add hover effect to all buttons
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach(button => {
+                button.addEventListener('mouseenter', () => {
+                    button.style.transform = 'translateY(-2px)';
+                });
+                button.addEventListener('mouseleave', () => {
+                    button.style.transform = '';
+                });
+            });
+        });
+    </script>
 </body>
 </html>
