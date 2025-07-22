@@ -296,11 +296,58 @@
             transform: translateY(-2px);
         }
 
-        /* Footer */
-        .footer {
-            background: var(--dark-color);
-            color: white;
-            padding: 3rem 0 1rem;
+        /* Team section */
+        .team-image-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .team-image-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2);
+        }
+
+        .team-image {
+            width: 100%;
+            height: auto;
+            max-width: 500px;
+            object-fit: cover;
+            transition: all 0.3s ease;
+            aspect-ratio: 3/4;
+        }
+
+        .team-image-container:hover .team-image {
+            transform: scale(1.02);
+        }
+
+        .team-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            padding: 3rem 2rem 2rem;
+            transform: translateY(10px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .team-image-container:hover .team-overlay {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .team-image {
+                max-width: 350px;
+            }
+            
+            .team-overlay {
+                padding: 2rem 1.5rem 1.5rem;
+            }
         }
 
         /* Responsive */
@@ -554,6 +601,30 @@
         </div>
     </section>
 
+    <!-- Team Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-12 text-center">
+                    <h2 class="display-4 fw-bold mb-4" data-aos="fade-up">Meet Our Team</h2>
+                    <p class="lead text-muted mb-5" data-aos="fade-up" data-aos-delay="100">The talented professionals behind Nova Virtual Solutions</p>
+                </div>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-6 col-md-8" data-aos="zoom-in">
+                    <div class="team-image-container text-center">
+                        <img src="images/team.jpg" alt="Nova Virtual Solutions Team" class="team-image img-fluid rounded-4 shadow-lg">
+                        <div class="team-overlay">
+                            <h4 class="text-white mb-2">Our Amazing Crew</h4>
+                            <p class="text-white-50">Dedicated professionals ready to support your business growth</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- About Section -->
     <section id="about" class="py-5 bg-light">
         <div class="container">
@@ -623,8 +694,7 @@
                     <h5 class="mb-3">
                         <i class="fas fa-rocket me-2"></i>Nova Virtual Solutions
                     </h5>
-                    
-                    <p class="mb-0">&copy; 2025 Nova Virtual Solutions. All rights reserved.</p>
+                    <p class="mb-0">&copy; 2024 Nova Virtual Solutions. All rights reserved.</p>
                 </div>
             </div>
         </div>

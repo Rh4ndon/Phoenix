@@ -257,6 +257,44 @@
         .pricing-features li:last-child {
             border-bottom: none;
         }
+
+        .team-section {
+        padding: 80px 0;
+        }
+
+        .team-image-container {
+            max-width: 600px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .team-image {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .team-image:hover {
+            transform: scale(1.02);
+        }
+
+        .team-caption h3 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .team-section {
+                padding: 60px 0;
+            }
+            
+            .team-image-container {
+                max-width: 100%;
+            }
+        }
         
         .cta-section {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -411,6 +449,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#pricing">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#team">Our Team</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#contact">Contact</a>
@@ -645,6 +686,29 @@
                             <li>Pay only for what you use</li>
                         </ul>
                         <a href="#contact" class="btn btn-primary w-100">Get Started</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Team Section -->
+    <section id="team" class="team-section py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title text-center animate-on-scroll">OUR TEAM</h2>
+            <p class="text-center mb-5 animate-on-scroll">Meet the dedicated professionals behind Nova Virtual Solutions</p>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-6 animate-on-scroll">
+                    <div class="team-card text-center">
+                        <div class="team-image-container">
+                            <!-- Placeholder for crew image - replace src with your image -->
+                            <img src="images/team.jpg" alt="Nova Virtual Solutions Team" class="img-fluid rounded shadow-lg team-image">
+                        </div>
+                        <div class="team-caption mt-4">
+                            <h3>The Nova Crew</h3>
+                            <p class="text-muted">Our dedicated team of virtual solution experts</p>
+                        </div>
                     </div>
                 </div>
             </div>
